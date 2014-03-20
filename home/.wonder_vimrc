@@ -1,0 +1,363 @@
+
+
+" vim ¤ÎÀßÄê¥Õ¥¡¥¤¥ë
+"	References:
+"		http://homepage1.nifty.com/niwatori/vi/y06.html
+"		http://www.ss.ics.tut.ac.jp/urushi/pukiwiki/pukiwiki.php?cmd=read&page=%5B%5Bmemo%2Fvim%2F.vimrc%5D%5D
+"		http://vimwiki.net/?vimrc%C5%B8%BC%A8%B2%F1%BE%EC#content_1_2
+"		http://espion.just-size.jp/archives/06/034090759.html
+"		http://d.hatena.ne.jp/tokuhirom/20060202/1138859362
+"		http://blog.netswitch.jp/articles/2006/01/21/vim-ruby%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E9%83%A8%E5%88%86%E6%9C%80%E9%81%A9%E5%8C%96
+"		http://d.hatena.ne.jp/secondlife/20060203/1138978661
+"		http://blog.blueblack.net/item_317
+"
+
+" NeoBundle ¤ÎÆ³Æþ¡Ê¥á¥â¡Ë
+"mkdir -p ~/.vim/bundle
+"git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+"
+set nocompatible               " Be iMproved
+filetype off                   " Required!
+
+if has('vim_starting')
+	if has('win32')
+		set runtimepath+=C:\Users\iwakami\Dropbox\VIM\bundle\neobundle.vim
+		call neobundle#rc(expand('C:\Users\iwakami\Dropbox\VIM\bundle\'))
+	else
+		set runtimepath+=~/Dropbox/VIM/bundle/neobundle.vim
+		call neobundle#rc(expand('~/Dropbox/VIM/bundle/')) 
+	endif
+endif
+
+filetype plugin indent on     " Required!
+
+" NeoBundle ¤³¤³¤Þ¤Ç
+
+" NeoComplCache start
+
+NeoBundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
+
+" NeoComplCache end
+
+" ref
+NeoBundle 'thinca/vim-ref'
+
+" ref end 
+
+" unite.vim
+
+NeoBundle 'Shougo/unite.vim'
+
+
+colorscheme delek
+set nocompatible
+set showmatch 
+set autoindent
+
+"-----------------------------------------------------------------------------
+" Ê¸»ú¥³¡¼¥É´ØÏ¢
+if &encoding !=# 'utf-8'
+	set encoding=japan
+	set fileencoding=japan
+endif
+
+set fileencodings=iso-2022-jp,euc-jp,sjis
+set fileformats=unix,dos,mac
+" ¢¢¤È¤«¡û¤ÎÊ¸»ú¤¬¤¢¤Ã¤Æ¤â¥«¡¼¥½¥ë°ÌÃÖ¤¬¤º¤ì¤Ê¤¤¤è¤¦¤Ë¤¹¤ë
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
+
+"-------------------------------------------
+"  Edit
+"-------------------------------------------
+" <Leader> ¤ò Ctrl + F ¤Ë
+let mapleader = ""
+" ¥Î¡¼¥Þ¥ë¥â¡¼¥É¤Ç¤â²þ¹Ô¤Ç¤­¤ë¤è¤¦¤Ë
+noremap <CR> o<ESC>
+
+"¥Ó¥¸¥å¥¢¥ë¥â¡¼¥É»þv¤Ç¹ÔËö¤Þ¤ÇÁªÂò
+vnoremap v $h
+set tabstop=2     " ¥¿¥ÖÊ¸»ú¿ô¤ò2¤Ë
+set shiftwidth=2  " ¼«Æ°¤ÇÁÞÆþ¤µ¤ì¤ë¥¿¥Ö¤ÎÉý
+set softtabstop=0 " ¥¿¥Ö¤ÎÂå¤ï¤ê¤Ë¶õÇò¤ò¤¤¤ì¤ë¤È¤­¤Î¶õÇò¿ô¡£0¤À¤ÈÌµ¸ú¡£
+set nobackup      " ¥Ð¥Ã¥¯¥¢¥Ã¥×¤òºî¤é¤Ê¤¤
+
+" ÆüËÜ¸ìÊ¸»ú¥³¡¼¥É
+set fileencoding=japan
+set fileencodings=iso-2022-jp,utf-8,euc-jp,ucs-2le,ucs-2,cp932
+
+set shiftround  " shiftwidth Éý¤Ë¥¤¥ó¥Ç¥ó¥È¤òÅý°ì
+set smartindent " Á°¤Î¹Ô¤Î¥¤¥ó¥Ç¥ó¥È¤ò°ú¤­·Ñ¤°
+set backspace=indent,eol,start " autoindent / eol ¤òÄ¶¤¨¤Æ¥Ð¥Ã¥¯¥¹¥Ú¡¼¥¹¤òÆ¯¤«¤»¤ë
+set wildmode=list:longest      " ¥³¥Þ¥ó¥É¥é¥¤¥óÊä´Ö¤ò¥·¥§¥ë¤Ã¤Ý¤¯
+
+set hidden      " ¥Ð¥Ã¥Õ¥¡¤¬ÊÔ½¸Ãæ¤Ç¤â¤½¤ÎÂ¾¤Î¥Õ¥¡¥¤¥ë¤ò³«¤±¤ë¤è¤¦¤Ë
+set autoread    " ³°Éô¤Î¥¨¥Ç¥£¥¿¤ÇÊÔ½¸Ãæ¤Î¥Õ¥¡¥¤¥ë¤¬ÊÑ¹¹¤µ¤ì¤¿¤é¼«Æ°¤ÇÆÉ¤ßÄ¾¤¹
+
+" ¥³¥á¥ó¥È¤ò·ÑÂ³¤µ¤»¤Ê¤¤
+autocmd FileType * set formatoptions-=ro
+
+"-------------------------------------------
+"  Search
+"-------------------------------------------
+set wrapscan   " ¸¡º÷¤ò¥Õ¥¡¥¤¥ë¤ÎËöÈø¤Þ¤Ç¸¡º÷¤·¤¿¤é¡¢¥Õ¥¡¥¤¥ë¤ÎÀèÆ¬¤Ø¥ë¡¼¥×¤¹¤ë
+set incsearch  " ¸¡º÷»þ¤Ë¥¤¥ó¥¯¥ê¥á¥ó¥¿¥ë¥µ¡¼¥Á
+set ignorecase " ÂçÊ¸»ú¾®Ê¸»ú¤ò¶èÊÌ¤·¤Ê¤¤
+set smartcase  " ¤¿¤À¤·¡¢ÂçÊ¸»ú¤¬´Þ¤Þ¤ì¤ë¾ì¹ç¤Î¤ß¡¢¶èÊÌ¤¹¤ë
+
+" ¸¡º÷·ë²Ì¤ò²èÌÌÃæ±û¤Ë¤¹¤ë
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
+
+"-------------------------------------------
+"  Display
+"-------------------------------------------
+
+" ¥Þ¥¦¥¹¤ò»È¤¨¤ë¤è¤¦¤Ë
+"    http://www.machu.jp/diary/20070310.html#p01
+"    http://kaede.to/~canada/doc/vimiythyyuceoioei
+"    http://kaede.to/~canada/doc/vimmouse-with-screen
+set mouse=a
+if &term == "screen"
+  set ttymouse=xterm2
+endif
+
+set nonumber    " ¹ÔÈÖ¹æ¤òÉ½¼¨¤·¤Ê¤¤
+set scrolloff=5 " ¥¹¥¯¥í¡¼¥ë»þ¤ÎÍ¾Çò³ÎÊÝ
+set title       " ¥¿¥¤¥È¥ë¥Ð¡¼¤Ë¥Õ¥¡¥¤¥ëÌ¾
+set ruler       " ¥ë¡¼¥é¤òÉ½¼¨
+set nowrapscan  " ÀÞ¤êÊÖ¤µ¤Ê¤¤
+set showcmd     " ÆþÎÏÃæ¤Î¥³¥Þ¥ó¥É¤ò¥¹¥Æ¡¼¥¿¥¹¤ËÉ½¼¨
+set hlsearch    " ¸¡º÷Ê¸»ú¤Î¥Ï¥¤¥é¥¤¥ÈÉ½¼¨
+
+" Á´³Ñ¥¹¥Ú¡¼¥¹¤ò»ë³Ð²½
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+match ZenkakuSpace /¡¡/
+
+" ¥¿¥Ö¤Ê¤É¤ò»ë³Ð²½
+" set list
+" set listchars=tab:>-,extends:<,trail:\  
+
+
+"-------------------------------------------
+"  Status
+"-------------------------------------------
+set laststatus=2 " ¥¹¥Æ¡¼¥¿¥¹ÉôÊ¬¤ò2¹Ô¤Ë
+"¥¹¥Æ¡¼¥¿¥¹Éô¤Î½ñ¼°ÀßÄê
+set statusline=%n:\ %<%f\ %m%r%h%w[%{&fileformat}][%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]\ %=%l,%c%V%8P
+
+"-------------------------------------------
+"  Complementation & History
+"-------------------------------------------
+" TAB ¤ÇÊä´°
+set wildchar=<Tab>
+set wildmenu
+
+" ÍúÎò¤Ï 50 ¸Ä
+set history=50
+
+" cvs,svn¤Î»þ¤ÏÊ¸»ú¥³¡¼¥É¤òeuc-jp¤ËÀßÄê
+autocmd FileType cvs :set fileencoding=euc-jp
+autocmd FileType svn :set fileencoding=utf-8
+
+" set tags
+if has("autochdir")
+	  set autochdir
+	  set tags=tags;
+else
+	  set	tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
+endif
+
+
+"-----------------------------------------------------------------------------
+" for YAML
+"-----------------------------------------------------------------------------
+au FileType yaml set expandtab ts=2 sw=2 enc=utf-8 fenc=utf-8
+
+"-------------------------------------------
+"  Ruby & YAML & RHTML
+"-------------------------------------------
+source $VIMRUNTIME/macros/matchit.vim
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+au FileType ruby set ts=2 sw=2 expandtab
+autocmd FileType yaml nmap ,e :execute '!ruby -ryaml -e "begin;YAML::load(open('."'"."%"."'".","."'"."r"."'".').read);rescue ArgumentError=>e;puts e;end"'<CR>
+au BufNewFile,BufRead *.rhtml setf eruby
+
+autocmd FileType html imap <buffer> <C-_> <%=  %><Esc>2hi
+autocmd FileType html imap <buffer> <C-E> <%  %><Esc>2hi
+autocmd FileType ruby imap <buffer> <C-L> RAILS_DEFAULT_LOGGER.debug()<Esc>i
+
+au FileType ruby map + : !indent-equal.rb
+
+
+"--------------------------------------------------------------
+" Javascript
+"--------------------------------------------------------------
+au FileType javascript set ts=4 sw=4 expandtab
+
+
+"--------------------------------------------------------------
+" Verilog
+"--------------------------------------------------------------
+au BufRead,BufNewFile *.vh,*.rv set filetype=verilog
+au FileType verilog set ts=2 sw=2 expandtab
+"au FileType verilog let g:AutoClosePairs= {'(': ')', '{': '}', '[': ']', '"': '"'}
+
+"-----------------------------------------------------------------------------
+" ¥Þ¥Ã¥×ÄêµÁ
+"-----------------------------------------------------------------------------
+"¥Ð¥Ã¥Õ¥¡°ÜÆ°ÍÑ¥­¡¼¥Þ¥Ã¥×
+" F2: Á°¤Î¥Ð¥Ã¥Õ¥¡
+" F3: ¼¡¤Î¥Ð¥Ã¥Õ¥¡
+" F4: ¥Ð¥Ã¥Õ¥¡ºï½ü
+map <F2> <ESC>:bp<CR>
+map <F3> <ESC>:bn<CR>
+map <F4> <ESC>:bw<CR>
+"É½¼¨¹ÔÃ±°Ì¤Ç¹Ô°ÜÆ°¤¹¤ë
+nmap j gj
+nmap k gk
+vmap j gj
+vmap k gk
+
+" CTRL-W ¤ÇÊÝÂ¸¤·¤ÆÆþÎÏ¥â¡¼¥É¤ËÉüµ¢
+imap  :wi
+map   :w
+
+" CTRL-U ¤òÌµ¸ú¤Ë
+imap  
+
+" On ubuntu (running Vim in gnome-terminal)
+" The reason for the double-command on <C-c> is due to some weirdness with the X clipboard system.
+vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+" nmap <C-> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+
+"-----------------------------------------------------------------------------
+" minibufexpl.vim ¤ÎÀßÄê
+"-----------------------------------------------------------------------------
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBuffs = 1
+let g:miniBufExplModSelTarget = 1
+
+nmap <Space> :MBEbn<CR>
+" GNU screen like¤Ê¥­¡¼¥Ð¥¤¥ó¥É
+"
+nnoremap <Leader><Space> :MBEbn<CR>
+nnoremap <Leader>n       :MBEbn<CR>
+nnoremap <Leader><C-n>   :MBEbn<CR>
+nnoremap <Leader>p       :MBEbp<CR>
+nnoremap <Leader><C-p>   :MBEbp<CR>
+nnoremap <Leader>c       :new<CR>
+nnoremap <Leader><C-c>   :new<CR>
+nnoremap <Leader>k       :bd<CR>
+nnoremap <Leader><C-k>   :bd<CR>
+nnoremap <Leader>s       :IncBufSwitch<CR>
+nnoremap <Leader><Tab>   :wincmd w<CR>
+nnoremap <Leader>Q       :only<CR>
+nnoremap <Leader>w       :ls<CR>
+nnoremap <Leader><C-w>   :ls<CR>
+"tnnoremap <Leader>a       :e #<CR>
+""nnoremap <Leader><C-a>   :e #<CR>
+nnoremap <Leader>"       :BufExp<CR>
+nnoremap <Leader>1   :e #1<CR>
+nnoremap <Leader>2   :e #2<CR>
+nnoremap <Leader>3   :e #3<CR>
+nnoremap <Leader>4   :e #4<CR>
+nnoremap <Leader>5   :e #5<CR>
+nnoremap <Leader>6   :e #6<CR>
+nnoremap <Leader>7   :e #7<CR>
+nnoremap <Leader>8   :e #8<CR>
+nnoremap <Leader>9   :e #9<CR>
+
+"-----------------------------------------------------------------------------
+" rails.vim
+"-----------------------------------------------------------------------------
+let g:rails_level=4
+let g:rails_default_file="app/controllers/application.rb"
+let g:rails_default_database="sqlite3"
+
+"-----------------------------------------------------------------------------
+" rubycomplete.vim
+"-----------------------------------------------------------------------------
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+autocmd FileType ruby,eruby set tabstop=2     " ¥¿¥ÖÊ¸»ú¿ô¤ò2¤Ë
+autocmd FileType ruby,eruby set shiftwidth=2  " ¼«Æ°¤ÇÁÞÆþ¤µ¤ì¤ë¥¿¥Ö¤ÎÉý
+autocmd FileType ruby,eruby set softtabstop=0 " ¥¿¥Ö¤ÎÂå¤ï¤ê¤Ë¶õÇò¤ò¤¤¤ì¤ë¤È¤­¤Î¶õÇò¿ô¡£0¤À¤ÈÌµ¸ú¡£
+
+"-----------------------------------------------------------------------------
+" Lusty Explorer
+"-----------------------------------------------------------------------------
+nmap <unique> <silent> bf :BufferExplorer<CR>
+nmap <unique> <silent> ef :FilesystemExplorer<CR>
+
+"
+" for C Source
+"
+au BufRead,BufNewFile *.cu set filetype=c
+autocmd FileType c set tabstop=3     " ¥¿¥ÖÊ¸»ú¿ô¤ò2¤Ë
+autocmd FileType c set shiftwidth=3  " ¼«Æ°¤ÇÁÞÆþ¤µ¤ì¤ë¥¿¥Ö¤ÎÉý
+" autocmd FileType c set softtabstop=0 " ¥¿¥Ö¤ÎÂå¤ï¤ê¤Ë¶õÇò¤ò¤¤¤ì¤ë¤È¤­¤Î¶õÇò¿ô¡£0¤À¤ÈÌµ¸ú¡£
+"
+" Vim: quickfixÍÑkey mappings
+"    http://whileimautomaton.net/2007/02/diary#d16-165600
+"
+nnoremap Q q
+
+nnoremap qj  :cnext<Return>
+nnoremap qk  :cprevious<Return>
+nnoremap qr  :crewind<Return>
+nnoremap qK  :cfirst<Return>
+nnoremap qJ  :clast<Return>
+nnoremap qf  :cnfile<Return>
+nnoremap qF  :cpfile<Return>
+nnoremap ql  :clist<Return>
+nnoremap qq  :cc<Return>
+nnoremap qo  :copen<Return>
+nnoremap qc  :cclose<Return>
+nnoremap qw  :cwindow<Return>
+nnoremap qp  :colder<Return>
+nnoremap qn  :cnewer<Return>
+nnoremap qm  :make<Return>
+nnoremap qM  :make<Space>
+nnoremap qg  :grep<Space>
+nnoremap q   <Nop>
+
+
+set t_Co=256
+
+
+" ESC ¤Ç¥Õ¥¡¥¤¥ëÊÝÂ¸
+" autocmd InsertLeave *  silent! wall
+
+set autowrite
+" autocmd CursorHold  *  silent! wall
+" autocmd CursorHoldI *  silent! wall
+
+
+" ¥Ð¥Ã¥Õ¥¡´Ø·¸
+nnoremap bb :b#<CR>
+nnoremap bn :bprevious<CR>
+nnoremap bp :bnext<CR>
+
+" ¥¦¥£¥ó¥É¥¦¥µ¥¤¥º
+nnoremap <silent> <S-Left>  :5wincmd <<CR>
+nnoremap <silent> <S-Right> :5wincmd ><CR>
+nnoremap <silent> <S-Up>    :5wincmd -<CR>
+nnoremap <silent> <S-Down>  :5wincmd +<CR>
+
+
+

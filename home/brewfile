@@ -11,12 +11,12 @@ install hub || true
 # install wemux || true
 # install tree || true
 install zsh || true
-install wget || true
+# install wget || true
 install curl || true
 install nkf || true
 install zsh-completions || true
 install lv || true
-install gcc47 || true
+# install gcc47 || true
 install the_silver_searcher || true
 
 # install phantomjs || true
@@ -28,8 +28,8 @@ install the_silver_searcher || true
 # install erlang || true
 # install leiningen || true
 # install clojurescript || true
-install ruby-build || true
-install rbenv || true
+#install ruby-build || true
+#install rbenv || true
 # install heroku-toolbelt || true
 # install opam || true
 # install dub || true
@@ -60,7 +60,7 @@ install rbenv || true
 # cask install sublime-text || true
 # cask install totalspaces || true
 # cask install totalfinder || true
-# cask install iterm2 || true
+ cask install iterm2 || true
 # cask install light-table || true
 # cask install nethackcocoa || true
 # cask install soundflower || true
