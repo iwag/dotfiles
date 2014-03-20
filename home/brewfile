@@ -1,4 +1,4 @@
-nze/homebrew-cask || true
+tap phinze/homebrew-cask || true
 tap homebrew/versions|| true
 update || true
 
