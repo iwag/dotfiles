@@ -67,4 +67,4 @@ export PATH="/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:/usr/X11R
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-source ~/work/_zshrc_all
+source ~/.zshrc_all
