@@ -7,19 +7,24 @@ install git || true
 # install gist || true
 # install gibo || true
 install hub || true
-install tmux || true
+# install tmux || true
 # install wemux || true
 # install tree || true
 install zsh || true
 install wget || true
 install curl || true
+install nkf || true
+install zsh-completions || true
+install lv || true
+install gcc47 || true
+install the_silver_searcher || true
 
 # install phantomjs || true
 # install llvm || true
 # install jq || true
 # install go || true
 # install clisp || true
-install python3 || true
+# install python3 || true
 # install erlang || true
 # install leiningen || true
 # install clojurescript || true
