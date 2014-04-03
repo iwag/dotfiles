@@ -1,4 +1,4 @@
-nze/homebrew-cask || true
+tap phinze/homebrew-cask || true
 tap homebrew/versions|| true
 update || true
 
@@ -7,7 +7,7 @@ install git || true
 # install gist || true
 # install gibo || true
 install hub || true
-install tmux || true
+# install tmux || true
 # install wemux || true
 # install tree || true
 install zsh || true
@@ -19,7 +19,7 @@ install curl || true
 # install jq || true
 # install go || true
 # install clisp || true
-install python3 || true
+# install python3 || true
 # install erlang || true
 # install leiningen || true
 # install clojurescript || true
@@ -33,6 +33,7 @@ install rbenv || true
 # install plt-racket || true
 # install haskell-platform || true
 # install cpanminus || true
+install autoconf
 
 # cask install keyremap4macbook || true
 # cask install dropbox || true
@@ -41,22 +42,22 @@ install rbenv || true
 # cask install bathyscaphe || true
 # cask install robomongo || true
 # cask install Chromium || true
-# cask install github || true
+cask install github || true
 # cask install alfred || true
-# cask install sourcetree || true
+cask install sourcetree || true
 # cask install google-chrome || true
 # cask install firefox || true
-# cask install kobito || true
-# cask install virtualbox || true
-# cask install vagrant || true
+cask install kobito || true
+cask install virtualbox || true
+cask install vagrant || true
 # cask install vlc || true
 # cask install vmware-fusion || true
 # cask install intellij-idea-community || true
-# cask install sublime-text || true
+cask install sublime-text || true
 # cask install totalspaces || true
 # cask install totalfinder || true
-# cask install iterm2 || true
+cask install iterm2 || true
 # cask install light-table || true
 # cask install nethackcocoa || true
 # cask install soundflower || true
-# cask install appcleaner || true
+cask install appcleaner || true

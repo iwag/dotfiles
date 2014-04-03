@@ -1,6 +1,6 @@
 
 let g:VIM_DIR = '~/VIM'
 
-if filereadable( expand('~/VIM/wonder_vimrc') )
-	source ~/VIM/wonder_vimrc
+if filereadable( expand('~/.vimrc_wonder') )
+	source ~/.vimrc_wonder
 endif 
