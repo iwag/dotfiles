@@ -35,21 +35,21 @@ filetype plugin indent on     " Required!
 
 " NeoComplCache start
 
-NeoBundle 'Shougo/neocomplcache'
+" NeoBundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 
 " NeoComplCache end
 
 " ref
-NeoBundle 'thinca/vim-ref'
+" NeoBundle 'thinca/vim-ref'
 
 " ref end 
 
 " unite.vim
 
-NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/unite.vim'
 
-NeoBundle 'rking/ag.vim'
+" NeoBundle 'rking/ag.vim'
 
 colorscheme delek
 set nocompatible
