@@ -15,18 +15,13 @@ set! browser.tabs.closeButtons=2
 set! ui.key.generalAccessKey=0
 
 
-" Gmail/LDR/Fastladder/OpenFL/はてブでは新規タブをバックグラウンドで開く
-autocmd LocationChange (?!https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/revivre)) :set! browser.tabs.loadDivertedInBackground=false
-autocmd LocationChange https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/revivre) :set! browser.tabs.loadDivertedInBackground=true
-
-
 " options
 " ======================================================================
 " ex mode でインクリメント補完
 set wildoptions=auto
 
 " :[tab]open の補完対象と順番
-set complete=Slb
+set complete=l
 
 " maine_coon.js
 set mainecoon=am
@@ -101,3 +96,7 @@ noremap <C-3> :set guioptions=BmTr<cr>
 noremap <C-4> :set mainecoon=amc<cr>
 noremap <C-5> :set mainecoon=am<cr>
 noremap <C-6> :set mainecoon=m<cr>
+
+" qmark
+silent qmark g http://github.com/iwag
+

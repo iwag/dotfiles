@@ -47,6 +47,8 @@ NeoBundle 'Shougo/unite.vim'
 
 NeoBundle 'rking/ag.vim'
 
+NeoBundle 'derekwyatt/vim-scala'
+
 colorscheme delek
 set nocompatible
 set showmatch 
@@ -77,9 +79,10 @@ noremap <CR> o<ESC>
 
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
-set tabstop=2     " タブ文字数を2に
-set shiftwidth=2  " 自動で挿入されるタブの幅
-set softtabstop=0 " タブの代わりに空白をいれるときの空白数。0だと無効。
+set tabstop=3     " タブ文字数を2に
+set shiftwidth=3  " 自動で挿入されるタブの幅
+set softtabstop=3 " タブの代わりに空白をいれるときの空白数。0だと無効。
+set expandtab
 set nobackup      " バックアップを作らない
 
 " 日本語文字コード
@@ -209,6 +212,14 @@ au FileType javascript set ts=4 sw=4 expandtab
 au BufRead,BufNewFile *.vh,*.rv set filetype=verilog
 au FileType verilog set ts=2 sw=2 expandtab
 "au FileType verilog let g:AutoClosePairs= {'(': ')', '{': '}', '[': ']', '"': '"'}
+
+"--------------------------------------------------------------
+" scala
+"--------------------------------------------------------------
+augroup filetypedetect
+	autocmd! BufNewFile,BufRead *.scala setfiletype scala
+	autocmd! BufNewFile,BufRead *.sbt setfiletype scala
+augroup END
 
 "-----------------------------------------------------------------------------
 " マップ定義
