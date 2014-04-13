@@ -24,8 +24,8 @@ if has('vim_starting')
 		set runtimepath+=C:\Users\iwakami\Dropbox\VIM\bundle\neobundle.vim
 		call neobundle#rc(expand('C:\Users\iwakami\Dropbox\VIM\bundle\'))
 	else
-		set runtimepath+=~/VIM/bundle/neobundle.vim
-		call neobundle#rc(expand('~/VIM/bundle/')) 
+		set runtimepath+=~/.vim/bundle/neobundle.vim
+		call neobundle#rc(expand('~/.vim/bundle/')) 
 	endif
 endif
 
@@ -34,22 +34,18 @@ filetype plugin indent on     " Required!
 " NeoBundle ここまで
 
 " NeoComplCache start
-
-" NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
-
 " NeoComplCache end
 
 " ref
-" NeoBundle 'thinca/vim-ref'
-
+NeoBundle 'thinca/vim-ref'
 " ref end 
 
 " unite.vim
+NeoBundle 'Shougo/unite.vim'
 
-" NeoBundle 'Shougo/unite.vim'
-
-" NeoBundle 'rking/ag.vim'
+NeoBundle 'rking/ag.vim'
 
 colorscheme delek
 set nocompatible
