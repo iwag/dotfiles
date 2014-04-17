@@ -4,10 +4,10 @@ update || true
 
 install brew-cask || true
 install git || true
-# install gist || true
+install gist || true
 # install gibo || true
 install hub || true
-# install tmux || true
+install byobu || true
 # install wemux || true
 # install tree || true
 install zsh || true
@@ -18,6 +18,7 @@ install zsh-completions || true
 install lv || true
 # install gcc47 || true
 install the_silver_searcher || true
+install weechat || true
 
 # install phantomjs || true
 # install llvm || true
@@ -66,3 +67,9 @@ cask install iterm2 || true
 # cask install nethackcocoa || true
 # cask install soundflower || true
 cask install appcleaner || true
+cask install limechat || true
+cask install gyazo || true
+
+# following commands are not brew 
+# curl -L http://install.ohmyz.sh | sh
+# curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
