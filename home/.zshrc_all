@@ -101,8 +101,9 @@ zstyle ':completion:*' use-compctl false # compctl形式を使用しない
 # 環境変数は主に ~/.zshenv に記述
 # ~/.zshrc に記述するのは、インタラクティブシェルとしての設定
 
-# 画面の最大化で戻らなくなるのが不便
-#if [ ! $TERM = "screen"  ]; then; screen; fi
+if [ $TERM = "screen"  ] || [ $SCREEN = 1 ]; then
+	stty erase "^?"
+fi
 
 autoload -U colors; colors      # ${fg[red]}形式のカラー書式を有効化
 
@@ -249,17 +250,6 @@ alias -g L="| $PAGER"
 alias -g M="| $PAGER"
 alias les="less"        # for typo
 
-#### man
-if [ -x `where jman`  ]; then
-  alias man="jman"
-fi
-
-#### emacs
-if [ -x $HOME/bin/select-emacs ]; then
-  alias emacs='$HOME/bin/select-emacs'
-  alias emasc='$HOME/bin/select-emacs'
-fi
-
 #### ps
 if [ $ARCHI = "irix" ]; then
   alias psa='ps -ef'
@@ -281,9 +271,6 @@ function psg() {
 
 #### ls
 #### dircolor
-if [ -x `where dircolors` ] && [ -e $HOME/.dircolors ]; then
-  eval `dircolors $HOME/.dircolors` # 色の設定
-fi
 if [ -x `where gnuls` ]; then
   alias ls="gnuls -F --color=auto --show-control-char"
   alias lscolor='gnuls -F --color=always --show-control-char'
@@ -345,15 +332,11 @@ function cd() { builtin cd $@ && ls; }
 alias cd..='cd ..'
 alias cd../='cd ..'
 function gv() { command gv $* & }
-function gimp() { command gimp $* & }
-function mozzila() { command mozilla $* & }
-function xdvi() { command xdvi $* & }
-function mpg321() { command mpg321 -s $* | esdcat & }
-function h() { history $* | head -29 | less }
-alias cp='cp -iv'
+function hgrep() { history | grep $@ }
 
 #iwakami wrote grep via satoru takabayashif
 function grep { command grep --color=tty "$@" }
+function dola { command docker ps -l -q } 
 
 function rm() {
   if [ -d ~/.trash ]; then
@@ -386,21 +369,6 @@ function sjis() {               # 文字コードを shift-jis に変換
   done;
 }
 
-function google() {
-  local str opt 
-  if [ $# != 0 ]; then # 引数が存在すれば
-    for i in $*; do
-      str="$str+$i"
-    done    
-    str=`echo $str | sed 's/^\+//'` #先頭の「+」を削除
-    opt='search?num=50&hl=ja&ie=euc-jp&oe=euc-jp&lr=lang_ja'
-    opt="${opt}&q=${str}"
-  fi
-  w3m http://www.google.co.jp/$opt #引数がなければ $opt は空になる
-  # mozilla -remote openURL\(http::/www.google.co.jp/$opt\) # 未テスト
-}
-alias ggl=google
-
 #### time
 REPORTTIME=8                    # CPUを8秒以上使った時は time を表示
 TIMEFMT="\
@@ -409,30 +377,6 @@ TIMEFMT="\
     CPU seconds spent in kernel mode. :%S
     Elapsed time in seconds.          :%E
     The  CPU percentage.              :%P"
-
-#### ログインの監視
-# log コマンドでも情報を見ることができる
-watch=(notme) # (all:全員、notme:自分以外、ユーザ名,@ホスト名、%端末名
-              # (列挙；空白区切り、繋げて書くとAND条件)
-LOGCHECK=60                     # チェック間隔[秒]
-WATCHFMT="%(a:${fg[blue]}Hello %n [%m] [%t]:${fg[red]}Bye %n [%m] [%t])"
-# ↑では、a (ログインかログアウトか)で条件分岐している
-# %(a:真のメッセージ:偽のメッセージ)
-# a,l,n,m,M で利用できる。
-# ■使える特殊文字
-# %n    ユーザ名
-# %a    ログイン/ログアウトに応じて「logged on」/「logged off」
-# %l    利用している端末名
-# %M    長いホスト名
-# %m    短いホスト名
-# %S〜%s        〜の間を反転
-# %U〜%u        〜の間をアンダーライン
-# %B〜%b        〜の間を太字
-# %t,%@ 12時間表記の時間
-# %T    24時間表記の時間
-# %w    日付(曜日 日)
-# %W    日付(月/日/年)
-# %D    日付(年-月-日)
 
 
 ############################################################
