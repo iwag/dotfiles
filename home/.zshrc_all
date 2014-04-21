@@ -12,7 +12,6 @@
 #bindkey '^Xp' predict-on    # [C-x p] で有効化
 #bindkey '^X^p' predict-off  # [C-x C-p] で無効化
 #predict-on
-# 面白いんだけど、コマンドラインの先頭に戻って編集するときにカーソル以降が全て消えるのが難点
 
 autoload -U zmv
 # % zmv '(*).jpeg' '$1.jpg'
@@ -22,89 +21,12 @@ autoload -U zmv
 # % zmv -W '*.c.org' 'org/*.c' #「(*)」「$1」を「*」で済ませられる
 alias mmv='noglob zmv -W'  # 引数のクォートも面倒なので
 # % mmv *.c.org org/*.c
-#zmv -C # 移動ではなくコピー(zcp として使う方法もあるみたいだけど)
-#zmv -L # 移動ではなくリンク(zln として使う方法もあるみたいだけど)
 
 zstyle ':completion:*' use-compctl false # compctl形式を使用しない
 
 # デフォルトでもユーザ名は /etc/passwd から、ホスト名は /etc/hosts から> 補完候補を持ってくる
 #zstyle ':completion:*' users-hosts bar:foo.example.com funa@daemon
  
-############################################################
-# tcsh 風味の単語削除
-#tcsh-backward-delete-word () {
-    #local WORDCHARS="${WORDCHARS:s#/#}"
-    #zle backward-delete-word
-#}
-#zle -N tcsh-backward-delete-word # 関数を widget に変えて
-#bindkey '^W' tcsh-backward-delete-word # bindkey で割当てる
-
-# 単語単位でのバックスペース
-#export WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
-#bindkey "^[h" backward-kill-word
-
-# redo
-
-#     $ bindkey G backward-kill-word
-#     "^W" backward-kill-word
-#     "^[^H" backward-kill-word
-#     "^[^?" backward-kill-word
-
-# メモ
-# cd -[tab] でディレクトリスタックを呼び出せる
-# <1-20> パターンマッチ
-# ESC C-h で区切り文字までのバックスペース
-# killallコマンド
-# ***/ シムリンクを辿る
-# C-x g ワイルドカード展開結果をみる
-# a=aiueo; echo $a[1] # 配列の扱い
-# setopt multios(デフォルト)で複数リダイレクト、パイプ(「ls > 1.txt > 2.txt | less」)
-
-#### 以下に書かれてないキーバインドは man zshzle の STANDARD WIDGETS を参照
-# ESC-q (push-line)ディレクトリスタック
-# C-x C-x       (exchange-point-and-mark)C-SPACE でマークした個所にジャンプ
-# ESC-T (transpose-words)引数の前後交換
-# ESC-. (insert-last-word)直前コマンドの最後の引数を呼び出す(繰り返し使える)、環境変数 _ も同様
-# ESC-U (up-case-word)カーソル位置〜単語終端までを大文字に変更
-# ESC-L (down-case-word)カーソル位置〜単語終端までを小文字に変更
-# ESC-' (quote-line)コマンド行全体を '〜' で括る
-# ESC-" (quote-region)マークした位置〜カーソル位置を '〜' で括る
-# (未割当て)      (expand-cmd-path)コマンドをフルパスに展開
-# C-x C-=       (what-cursor-position)カーソル位置にある文字コードを8、10、16進表示、カーソル位置を表示
-# C-[   ESC と等価
-# ESC-n (digit-argument)キー入力の回数指定(例：[ESC-4][ESC-0]-)
-# ESC C-_       (copy-prev-word)カーソルの左にある単語をコピーしてペーストする
-# C-x C-o       (overwrite-mode)挿入←→上書のモード切り替え
-
-# 個人的キーバインドに使える C-キーバインド
-# C-o, C-q, C-s
-# C-c, C-g は入力中のコマンドが消えてしまうのを何とかする
-# C-i   TAB でいい
-# C-w   要改良
-# C-v   特殊文字を置く。C-v C-i ならタブ文字、C-v C-j なら改行文字を置ける
-# C-x 系コマンドを調べる。(C-x g みたいな)
-# ■C-t の文字入れかえは使い勝手が良くないのでいらない → screen に使用
-#### C-j or C-m どちらかで良い。→わけではない。skkinput で C-j を使う
-
-#### メールチェック
-## autoload -U colors; colors   # ↓のために。設定してなければしておく
-# MAILCHECK=300                 # 300秒毎にチェック
-## MAILPATH="/var/mail$USER"    # チェックするメールボックス
-# MAILPATH="/var/mail$USER?{fg[red]}New mail"   # メッセージと色を変更
-
-## --enable-maildir-support を指定してコンパイルすればMaildir 形式でも可能
-# MAILPATH="$HOME/Maildir?{fg_bold[red]}New mail in $_" # 「$_」は変更されたfile
-## : で区切れば複数のメールスプールをチェックできる
-# MAILPATH="$HOME/Maildir?{fg_bold[red]}New mail in $_:$HOME/Maildir-foo?{fg_bold[green]}New mail in $_:"
-
-############################################################
-# 環境変数は主に ~/.zshenv に記述
-# ~/.zshrc に記述するのは、インタラクティブシェルとしての設定
-
-if [ $TERM = "screen"  ] || [ $SCREEN = 1 ]; then
-	stty erase "^?"
-fi
-
 autoload -U colors; colors      # ${fg[red]}形式のカラー書式を有効化
 
 hosts=( localhost `hostname` )
@@ -219,31 +141,6 @@ if [ $TERM = "screen" ] || [ $SCREEN = 1 ]; then
 	stty erase "^?"
 fi
 
-#if [ $TERM = "kterm-color" ] || [ $TERM = "xterm" ]; then
-#if [ $COLORTERM = 1 ]; then
-#  if [ $UID = 0 ] ; then 
-#    PSCOLOR='00;04;31'  # 細字;下線;赤
-#  else
-#    PSCOLOR='00;04;32'  # 細字;下線;緑
-#  fi
-##    RPROMPT=$'%{\e[${PSCOLOR}m%}[%~]%{\e[00m%}'        # 右プロンプト
-#  RPS1=$'%{\e[${PSCOLOR}m%}[%~]%{\e[00m%}'      # 右プロンプト
-#  PS1=$'%{\e]2; %m:%~ \a'$'\e]1;%%: %~\a%}'$'\n%{\e[${PSCOLOR}m%}%n@%m ${WINDOW:+"[$WINDOW]"}%#%{\e[00m%} '
-#fi
-# 1個目の $'...' は 「\e]2;「kterm のタイトル」\a」
-# 2個目の $'...' は 「\e]1;「アイコンのタイトル」\a」
-# 3個目の $'...' がプロンプト
-
-# \e を ESC コード()縺ァ鄂ョ縺丞ソヲ√′縺ゅｋ縺九ｂ
-# emacs 、ヌ、マ C-q ESC, vi 、ヌ、マ C-v ESC 、ヌニ呂垢#       \e[00m  初期状態へ
-#       \e[01m  太字     (0は省略可能っぽい)
-#       \e[04m  アンダーライン
-#       \e[05m  blink(太字)
-#       \e[07m  反転
-#       \e[3?m  文字色をかえる
-#       \e[4?m  背景色をかえる
-#               ?= 0:黒, 1:赤, 2:緑, 3:黄, 4:青, 5:紫, 6:空, 7:白
-
 ############################################################
 ## alias & function
 
@@ -303,11 +200,6 @@ function lll() { lscolor -la $* | less }
 alias du='du -k'
 alias mv='mv -iv'
 #alias  memo    'skkfep -viesc -e jvim3 ~/memo.txt'
-function kterm() { /usr/X11R6/bin/kterm -sb -sl 500 -km euc -title kterm@$HOST $* & }
-function mlterm() { /usr/X11R6/bin/mlterm $* & }
-#alias mnews='mnews -m'
-alias xcalc='xcalc &'
-alias xterm='xterm &'
 alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
@@ -335,12 +227,14 @@ alias -g ....='../..'
 function cd() { builtin cd $@ && ls; }
 alias cd..='cd ..'
 alias cd../='cd ..'
-function gv() { command gv $* & }
-function hgrep() { history | grep $@ }
 
-#iwakami wrote grep via satoru takabayashif
+function hgrep() { history | grep $@ }
 function grep { command grep --color=tty "$@" }
+
+
+# doccker shortcut
 function dola { command docker ps -l -q } 
+alias doc="docker "
 
 function rm() {
   if [ -d ~/.trash ]; then
@@ -357,20 +251,6 @@ function rm() {
   else
     /bin/rm -i $@
   fi
-}
-
-function euc() {                # 文字コードを euc-jp に変換
-  for i in $@; do;
-    nkf -e -Lu $i >! /tmp/euc.$$ # -Lu :改行を LF にする
-    mv -f /tmp/euc.$$ $i
-  done;
-}
-
-function sjis() {               # 文字コードを shift-jis に変換
-  for i in $@; do;
-    nkf -s -Lw $i >! /tmp/euc.$$ # -Lu :改行を CRLF にする
-    mv -f /tmp/euc.$$ $i
-  done;
 }
 
 #### time
