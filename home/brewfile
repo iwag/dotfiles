@@ -34,12 +34,11 @@ install weechat || true
 # install heroku-toolbelt || true
 # install opam || true
 # install dub || true
-# install sbt || true
+install sbt || true
 # install dmd || true
 # install plt-racket || true
 # install haskell-platform || true
 # install cpanminus || true
-install autoconf
 
 # cask install keyremap4macbook || true
 # cask install dropbox || true
