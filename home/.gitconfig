@@ -1,5 +1,6 @@
 [user]
 	name = iwag
+   email = "iwagame@gmail.com"
 [core]
 	excludesfile = /Users/iwag/.gitignore_global
 [difftool "sourcetree"]

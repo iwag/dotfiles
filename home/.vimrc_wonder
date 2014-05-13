@@ -2,14 +2,6 @@
 
 " vim の設定ファイル
 "	References:
-"		http://homepage1.nifty.com/niwatori/vi/y06.html
-"		http://www.ss.ics.tut.ac.jp/urushi/pukiwiki/pukiwiki.php?cmd=read&page=%5B%5Bmemo%2Fvim%2F.vimrc%5D%5D
-"		http://vimwiki.net/?vimrc%C5%B8%BC%A8%B2%F1%BE%EC#content_1_2
-"		http://espion.just-size.jp/archives/06/034090759.html
-"		http://d.hatena.ne.jp/tokuhirom/20060202/1138859362
-"		http://blog.netswitch.jp/articles/2006/01/21/vim-ruby%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E9%83%A8%E5%88%86%E6%9C%80%E9%81%A9%E5%8C%96
-"		http://d.hatena.ne.jp/secondlife/20060203/1138978661
-"		http://blog.blueblack.net/item_317
 "
 
 " NeoBundle の導入（メモ）
@@ -33,21 +25,39 @@ filetype plugin indent on     " Required!
 
 " NeoBundle ここまで
 
-" NeoComplCache start
 NeoBundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
-" NeoComplCache end
 
-" ref
 NeoBundle 'thinca/vim-ref'
-" ref end 
-
-" unite.vim
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'derekwyatt/vim-scala'
 
 NeoBundle 'rking/ag.vim'
+let g:agprg="/usr/local/bin/ag --column"
 
-NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'rhysd/accelerated-jk'
+let g:accelerated_jk_enable_deceleration = 1
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
+if has('unix') && system('uname')=~'Darwin'
+   NeoBundle 'rizzatti/funcoo.vim'
+   NeoBundle 'rizzatti/dash.vim'
+   let g:dash_map = {
+            \ 'ruby'       : 'ruby2',
+            \ 'python'     : 'python2',
+            \ 'scala' : 'scala',
+            \ 'javascript' : 'underscore'
+            \ }
+endif
+
+NeoBundle 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \ 'filename': '%f',
+      \ }
+      \}
 
 colorscheme delek
 set nocompatible
@@ -220,6 +230,7 @@ augroup filetypedetect
 	autocmd! BufNewFile,BufRead *.scala setfiletype scala
 	autocmd! BufNewFile,BufRead *.sbt setfiletype scala
 augroup END
+au FileType scala set ts=2 sw=2 expandtab
 
 "-----------------------------------------------------------------------------
 " マップ定義
