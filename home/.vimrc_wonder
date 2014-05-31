@@ -4,9 +4,11 @@
 "	References:
 "
 
-" NeoBundle の導入（メモ）
-"mkdir -p ~/.vim/bundle
-"git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+" NeoBundle の導入
+" curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+" othr
+" mkdir -p ~/.vim/bundle
+" git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 "
 set nocompatible               " Be iMproved
 filetype off                   " Required!
@@ -63,6 +65,8 @@ colorscheme delek
 set nocompatible
 set showmatch 
 set autoindent
+
+" install 
 
 "-----------------------------------------------------------------------------
 " 文字コード関連

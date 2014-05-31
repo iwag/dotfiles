@@ -45,8 +45,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx brew docker git-extras web-search dirhistory)
+plugins=(git osx brew docker git-extras web-search dirhistory github sbt)
 # jira ruby tmux
+
 
 source $ZSH/oh-my-zsh.sh
 
