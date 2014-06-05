@@ -156,13 +156,7 @@ function psg() {
 
 #### ls
 #### dircolor
-if [ -x `where gnuls` ]; then
-  alias ls="gnuls -F --color=auto --show-control-char"
-  alias lscolor='gnuls -F --color=always --show-control-char'
-  # 補完リストをカラー化
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-  #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} でも良さげ
-elif [ $ARCHI = "linux" ]; then
+if [ $ARCHI = "linux" ]; then
   alias ls="ls -F --color=auto --show-control-char"
   alias lscolor='ls -F --color=always --show-control-char'
   # 補完リストをカラー化
@@ -213,10 +207,18 @@ function hgrep() { history | grep $@ }
 function grep { command grep --color=tty "$@" }
 
 # git 
+alias git-ammend="git commit --amend"
+alias git-ca="git commit -a "
 
 # doccker shortcut
 function dola { command docker ps -l -q } 
 alias doc="docker "
+alias dops="docker ps"
+alias dorun="docker run"
+alias dostop="docker stop"
+alias doimage="docker images"
+
+function jsurl { curl -H "application/json" $@ }
 
 function rm() {
   if [ -d ~/.trash ]; then
@@ -236,7 +238,7 @@ function rm() {
 }
 
 #### time
-REPORTTIME=8                    # CPUを8秒以上使った時は time を表示
+REPORTTIME=20
 TIMEFMT="\
     The name of this job.             :%J
     CPU seconds spent in user mode.   :%U
@@ -247,9 +249,9 @@ TIMEFMT="\
 # zaw
 ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
-bindkey '^r' zaw-history
-bindkey '^f' zaw-git-files
-bindkey '^o' zaw-open-file
+bindkey '^[r' zaw-history
+bindkey '^[o' zaw-git-files
+#bindkey '^e' zaw-open-file
 
 ############################################################
 ## 個人情報を含む設定
