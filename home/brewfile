@@ -68,6 +68,10 @@ cask install iterm2 || true
 cask install appcleaner || true
 cask install limechat || true
 cask install gyazo || true
+cask install atom || true
+# cask install google-japanese-ime || true
+# cask install growl-fork || true
+
 
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh

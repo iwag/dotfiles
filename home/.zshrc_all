@@ -5,13 +5,6 @@
 # 修正、改変、再配布何でも可
 # cf: man zshall, zshoptions
 ############################################################
-#### 評価用スペース
-#autoload -U predict-on # コマンドの予測入力(ヒストリ→一般補完)
-#zle -N predict-on
-#zle -N predict-off
-#bindkey '^Xp' predict-on    # [C-x p] で有効化
-#bindkey '^X^p' predict-off  # [C-x C-p] で無効化
-#predict-on
 
 autoload -U zmv
 # % zmv '(*).jpeg' '$1.jpg'
@@ -24,13 +17,9 @@ alias mmv='noglob zmv -W'  # 引数のクォートも面倒なので
 
 zstyle ':completion:*' use-compctl false # compctl形式を使用しない
 
-# デフォルトでもユーザ名は /etc/passwd から、ホスト名は /etc/hosts から> 補完候補を持ってくる
-#zstyle ':completion:*' users-hosts bar:foo.example.com funa@daemon
- 
 autoload -U colors; colors      # ${fg[red]}形式のカラー書式を有効化
 
 hosts=( localhost `hostname` )
-#printers=( lw ph clw )
 umask 002
 cdpath=( ~ )                    # cd のサーチパス
 
@@ -50,8 +39,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 #### history
 HISTFILE="$HOME/.zhistory"      # 履歴ファイル
-HISTSIZE=10000           # メモリ上に保存される $HISTFILE の最大サイズ？
-SAVEHIST=100000                  # 保存される最大履歴数
+HISTSIZE=100000           # メモリ上に保存される $HISTFILE の最大サイズ？
+SAVEHIST=1000000                  # 保存される最大履歴数
 
 #### option, limit, bindkey
 setopt extended_history         # コマンドの開始時刻と経過時間を登録
@@ -129,14 +118,9 @@ autoload run-help
 # ↑(_cache_hosts) ~/.ssh/known_hosts から自動的に取得する
 _cache_hosts=($HOST localhost)
 autoload -U compinit; compinit -u
-compdef _tex platex             # platex に .tex を
 
 
-############################################################
-## プロンプト設定
-#unsetopt promptcr       # 改行のない出力をプロンプトで上書きするのを防ぐ
-#setopt prompt_subst             # ESCエスケープを有効にする
-
+# for byobu tmux
 if [ $TERM = "screen" ] || [ $SCREEN = 1 ]; then
 	stty erase "^?"
 fi
@@ -172,13 +156,7 @@ function psg() {
 
 #### ls
 #### dircolor
-if [ -x `where gnuls` ]; then
-  alias ls="gnuls -F --color=auto --show-control-char"
-  alias lscolor='gnuls -F --color=always --show-control-char'
-  # 補完リストをカラー化
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-  #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} でも良さげ
-elif [ $ARCHI = "linux" ]; then
+if [ $ARCHI = "linux" ]; then
   alias ls="ls -F --color=auto --show-control-char"
   alias lscolor='ls -F --color=always --show-control-char'
   # 補完リストをカラー化
@@ -193,8 +171,6 @@ alias lf='ls'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -al'
-function lsl() { lscolor $* | less }
-function lll() { lscolor -la $* | less }
 
 #### command
 alias du='du -k'
@@ -203,7 +179,6 @@ alias mv='mv -iv'
 alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
-alias scr="screen -R"
 alias view="vim -R"
 
 # short name
@@ -231,10 +206,19 @@ alias cd../='cd ..'
 function hgrep() { history | grep $@ }
 function grep { command grep --color=tty "$@" }
 
+# git 
+alias git-ammend="git commit --amend"
+alias git-ca="git commit -a "
 
 # doccker shortcut
 function dola { command docker ps -l -q } 
 alias doc="docker "
+alias dops="docker ps"
+alias dorun="docker run"
+alias dostop="docker stop"
+alias doimage="docker images"
+
+function jsurl { curl -H "application/json" $@ }
 
 function rm() {
   if [ -d ~/.trash ]; then
@@ -254,7 +238,7 @@ function rm() {
 }
 
 #### time
-REPORTTIME=8                    # CPUを8秒以上使った時は time を表示
+REPORTTIME=20
 TIMEFMT="\
     The name of this job.             :%J
     CPU seconds spent in user mode.   :%U
@@ -262,6 +246,12 @@ TIMEFMT="\
     Elapsed time in seconds.          :%E
     The  CPU percentage.              :%P"
 
+# zaw
+ZAW_EDITOR=vim
+source ~/.zsh/zaw/zaw.zsh
+bindkey '^[r' zaw-history
+bindkey '^[o' zaw-git-files
+#bindkey '^e' zaw-open-file
 
 ############################################################
 ## 個人情報を含む設定
