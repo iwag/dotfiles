@@ -25,7 +25,12 @@ filetype plugin indent on     " Required!
 
 " NeoBundle ここまで
 
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Rip-Rip/clang_complete'
+if has('lua') 
+	NeoBundle 'Shougo/neocomplete'
+else
+	NeoBundle 'Shougo/neocomplcache'
+end
 let g:neocomplcache_enable_at_startup = 1
 
 NeoBundle 'thinca/vim-ref'
@@ -58,6 +63,12 @@ let g:lightline = {
       \ 'filename': '%f',
       \ }
       \}
+
+NeoBundle 'vimtaku/hl_matchit.vim.git'
+let g:hl_matchit_enable_on_vim_startup=1
+let g:hl_matchit_hl_groupname="Title"
+let g:hl_matchit_allow_ft_regexpt="html\|vim\|ruby\|scala\|java\|sh"
+
 
 colorscheme delek
 set nocompatible
@@ -92,7 +103,6 @@ vnoremap v $h
 set tabstop=3     " タブ文字数を2に
 set shiftwidth=3  " 自動で挿入されるタブの幅
 set softtabstop=3 " タブの代わりに空白をいれるときの空白数。0だと無効。
-set expandtab
 set nobackup      " バックアップを作らない
 
 " 日本語文字コード
@@ -298,12 +308,6 @@ nnoremap <Leader>7   :e #7<CR>
 nnoremap <Leader>8   :e #8<CR>
 nnoremap <Leader>9   :e #9<CR>
 
-"-----------------------------------------------------------------------------
-" rails.vim
-"-----------------------------------------------------------------------------
-let g:rails_level=4
-let g:rails_default_file="app/controllers/application.rb"
-let g:rails_default_database="sqlite3"
 
 "-----------------------------------------------------------------------------
 " rubycomplete.vim
@@ -312,6 +316,8 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_include_object= 1
+autocmd FileType ruby,eruby let g:rubycomplete_include_object_space= 1
 
 autocmd FileType ruby,eruby set tabstop=2     " タブ文字数を2に
 autocmd FileType ruby,eruby set shiftwidth=2  " 自動で挿入されるタブの幅
@@ -330,6 +336,7 @@ au BufRead,BufNewFile *.cu set filetype=c
 autocmd FileType c set tabstop=3     " タブ文字数を2に
 autocmd FileType c set shiftwidth=3  " 自動で挿入されるタブの幅
 " autocmd FileType c set softtabstop=0 " タブの代わりに空白をいれるときの空白数。0だと無効。
+
 "
 " Vim: quickfix用key mappings
 "    http://whileimautomaton.net/2007/02/diary#d16-165600

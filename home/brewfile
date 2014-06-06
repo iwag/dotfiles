@@ -72,3 +72,4 @@ cask install gyazo || true
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh
 # curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+# sudo /usr/bin/local/gem install pry rb-readline homesick
