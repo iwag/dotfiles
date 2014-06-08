@@ -1,5 +1,5 @@
 tap phinze/homebrew-cask || true
-tap homebrew/versions|| true
+tap iwag/versions|| true
 update || true
 
 install brew-cask || true
