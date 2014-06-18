@@ -1,6 +1,8 @@
-tap caskroom/cask || true
 #brew install brew-cask
+tap caskroom/cask || true
 tap homebrew/versions|| true
+# tap phinze/homebrew-cask || true
+tap iwag/versions|| true
 update || true
 
 install brew-cask || true
