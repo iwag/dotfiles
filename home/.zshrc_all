@@ -26,7 +26,7 @@ cdpath=( ~ )                    # cd のサーチパス
 # for zsh-completions
 typeset -U path cdpath fpath manpath  # パスの重複を省く指定
 path=(/usr/local/bin(N-/) /bin(N-/) /usr/sbin(N-/) /sbin(N-/) /usr/bin(N-/) ${path})
-export PATH 
+export PATH
 fpath=(/usr/local/share/zsh-completions(N-/) ${fpath})
 
 # カレントディレクトリに候補がない場合のみ cdpath 上のディレクトリを候補
@@ -84,13 +84,13 @@ setopt hist_save_nodups # ヒストリファイルに保存するとき、すで
 setopt hist_reduce_blanks # ヒストリに保存するときに余分なスペースを削除する
 
 setopt auto_menu # 補完候補が複数あるときに自動的に一覧表示する
- 
+
 
 setopt print_eight_bit # 日本語ファイル名を表示可能にする
- 
+
 # フローコントロールを無効にする
 setopt no_flow_control
- 
+
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -138,7 +138,7 @@ alias les="less"        # for typo
 #### ps
 if [ $ARCHI = "irix" ]; then
   alias psa='ps -ef'
-else; 
+else;
   alias psa='ps auxw'
 fi
 function pst() {                # CPU 使用率の高い方から8つ
@@ -206,12 +206,12 @@ alias cd../='cd ..'
 function hgrep() { history | grep $@ }
 function grep { command grep --color=tty "$@" }
 
-# git 
+# git
 alias git-ammend="git commit --amend"
 alias git-ca="git commit -a "
 
 # doccker shortcut
-function dola { command docker ps -l -q } 
+function dola { command docker ps -l -q }
 alias doc="docker "
 alias dops="docker ps"
 alias dorun="docker run"
@@ -228,7 +228,7 @@ function rm() {
       # 対象が ~/.trash/ 以下なファイルならば /bin/rm を呼び出したいな
       if [ -e $i ]; then
         mv $i ~/.trash/$DATE/
-      else 
+      else
         echo "$i : not found"
       fi
     done
@@ -251,12 +251,25 @@ ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
 bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
-#bindkey '^e' zaw-open-file
+bindkey '^[e' zaw-open-file
 
-############################################################
+function peco-select-history() {
+	local tac
+	if which tac > /dev/null; then
+		tac="tac"
+	else
+		tac="tail -r"
+	fi
+	BUFFER=$(history -n 1 | \
+		eval $tac | \
+		peco --query "$LBUFFER")
+	CURSOR=$#BUFFER
+	zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
 ## 個人情報を含む設定
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
-#### end of ~ippei/.zshrc #########################################
-
