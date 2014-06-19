@@ -102,9 +102,8 @@ stty    intr    '^C'
 stty    susp    '^Z'
 
 #### bindkey
-# bindkey "割当てたいキー" 実行させる機能の名前
 bindkey -e    # emacs 風キーバインド(環境変数 EDITOR も反映するが、こっちが優先)
-bindkey '^I'    complete-word   # complete on tab, leave expansion to _expand
+bindkey '^I'   complete-word   # complete on tab, leave expansion to _expand
 
 bindkey '^P' history-beginning-search-backward # 先頭マッチのヒストリサーチ
 bindkey '^N' history-beginning-search-forward # 先頭マッチのヒストリサーチ
@@ -254,10 +253,11 @@ TIMEFMT="\
 # zaw
 ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
-bindkey '^[r' zaw-history
+# bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
 
+unalias history # ohmyzsh alias another history
 function peco-select-history() {
 	local tac
 	if which tac > /dev/null; then
@@ -269,10 +269,10 @@ function peco-select-history() {
 		eval $tac | \
 		peco --query "$LBUFFER")
 	CURSOR=$#BUFFER
-	zle clear-screen
+	#zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+bindkey '^[r' peco-select-history
 
 alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
 
