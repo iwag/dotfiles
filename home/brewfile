@@ -1,4 +1,7 @@
-tap phinze/homebrew-cask || true
+#brew install brew-cask
+tap caskroom/cask || true
+tap homebrew/versions|| true
+# tap phinze/homebrew-cask || true
 tap iwag/versions|| true
 update || true
 
@@ -72,6 +75,8 @@ cask install atom || true
 # cask install google-japanese-ime || true
 # cask install growl-fork || true
 
+
+tap lestrrat/peco
 
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh
