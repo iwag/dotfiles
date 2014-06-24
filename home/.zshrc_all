@@ -249,9 +249,11 @@ TIMEFMT="\
 # zaw
 ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
-bindkey '^[r' zaw-history
+#bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
+
+unalias history # for ohmyzsh
 
 function peco-select-history() {
 	local tac
@@ -264,10 +266,16 @@ function peco-select-history() {
 		eval $tac | \
 		peco --query "$LBUFFER")
 	CURSOR=$#BUFFER
-	zle clear-screen
+	#zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^r' peco-select-history
+bindkey '^[r' peco-select-history
+
+# config go and ghq
+# go get github.com/motemen/ghq
+# git config --global ghq.root ~/Devel/src
+export GOPATH="${HOME}/Devel/go"
+export PATH="${PATH}:${GOPATH}/bin"
 
 ## 個人情報を含む設定
 if [ -e ~/.zshrc_private ]; then
