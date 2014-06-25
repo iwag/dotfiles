@@ -76,7 +76,8 @@ cask install atom || true
 # cask install growl-fork || true
 
 
-tap lestrrat/peco
+tap lestrrat/peco || true
+install peco || true
 
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh

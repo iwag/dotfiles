@@ -102,9 +102,8 @@ stty    intr    '^C'
 stty    susp    '^Z'
 
 #### bindkey
-# bindkey "割当てたいキー" 実行させる機能の名前
 bindkey -e    # emacs 風キーバインド(環境変数 EDITOR も反映するが、こっちが優先)
-bindkey '^I'    complete-word   # complete on tab, leave expansion to _expand
+bindkey '^I'   complete-word   # complete on tab, leave expansion to _expand
 
 bindkey '^P' history-beginning-search-backward # 先頭マッチのヒストリサーチ
 bindkey '^N' history-beginning-search-forward # 先頭マッチのヒストリサーチ
@@ -209,6 +208,11 @@ function grep { command grep --color=tty "$@" }
 # git
 alias git-ammend="git commit --amend"
 alias git-ca="git commit -a "
+function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c980863ccfa
+	local current_branch_name=$(git symbolic-ref --short HEAD | xargs perl -MURI::Escape -e 'print uri_escape($ARGV[0]);')
+	git config --get remote.origin.url | sed -e "s/^.*[:\/]\(.*\/.*\).git$/https:\/\/github.com\/\1\//" | sed -e "s/$/pull\/${current_branch_name}/" | xargs open
+}
+
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -249,12 +253,14 @@ TIMEFMT="\
 # zaw
 ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
-#bindkey '^[r' zaw-history
-bindkey '^[o' zaw-git-files
-bindkey '^[e' zaw-open-file
 
 unalias history # for ohmyzsh
 
+# bindkey '^[r' zaw-history
+bindkey '^[o' zaw-git-files
+bindkey '^[e' zaw-open-file
+
+unalias history # ohmyzsh alias another history
 function peco-select-history() {
 	local tac
 	if which tac > /dev/null; then
@@ -277,7 +283,8 @@ bindkey '^[r' peco-select-history
 export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
-## 個人情報を含む設定
+alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
+
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
