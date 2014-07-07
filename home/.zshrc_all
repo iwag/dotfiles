@@ -283,7 +283,9 @@ bindkey '^[r' peco-select-history
 export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
-alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
+if [ `which pry` ] ; then
+	alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
+fi
 
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private

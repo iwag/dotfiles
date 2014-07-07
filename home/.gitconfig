@@ -1,6 +1,6 @@
 [user]
 	name = iwag
-   email = "iwagame@gmail.com"
+	email = "iwagame@gmail.com"
 [core]
 	excludesfile = /Users/iwag/.gitignore_global
 [difftool "sourcetree"]
@@ -9,8 +9,39 @@
 [mergetool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.8.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[color]
+	ui = true
 [alias]
+	cm = commit
 	co = checkout
-	st = status
+	l = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %ar%Creset'
+	logs = log --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
+	st = status -sb
+	pl = pull --rebase --prune
+	sup = submodule update
+	ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >> .gitignore
+	b = branch -a
+	upi = update-index --assume-unchanged
+	rv = checkout HEAD --
+	g = grep -niI
+	difff = diff --stat
+[branch]
+	autosetuprebase = always
+[push]
+	default = current
+[core]
+	excludesfile = ~/.gitignore
+	pager = less -r
+	editor = emacs -nw
+[grep]
+	lineNumber = true
+	 
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[http]
+	sslVerify = false
+
 [ghq]
 	root = /Users/iwag/Devel/src
