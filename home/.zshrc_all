@@ -260,7 +260,7 @@ unalias history # for ohmyzsh
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
 
-unalias history # ohmyzsh alias another history
+#unalias history # ohmyzsh alias another history
 function peco-select-history() {
 	local tac
 	if which tac > /dev/null; then
