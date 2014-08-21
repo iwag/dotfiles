@@ -254,13 +254,12 @@ TIMEFMT="\
 ZAW_EDITOR=vim
 source ~/.zsh/zaw/zaw.zsh
 
-unalias history # for ohmyzsh
+[ -n "`alias history`" ] && unalias history # for ohmyzsh
 
 # bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
 
-#unalias history # ohmyzsh alias another history
 function peco-select-history() {
 	local tac
 	if which tac > /dev/null; then
@@ -277,13 +276,29 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^[r' peco-select-history
 
+function agp() {
+	local tac
+	if which tac > /dev/null; then
+		tac="tac"
+	else
+		tac="tail -r"
+	fi
+	FILE=$(ag $@ | peco |  awk -F':' '{print $1}')
+	
+	$ZAW_EDITOR $FILE
+}
+
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+
 # config go and ghq
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
 export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
-if [ `which pry` ] ; then
+if which pry > /dev/null  ; then
 	alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
 fi
 

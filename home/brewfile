@@ -1,5 +1,6 @@
 #brew install brew-cask
 tap caskroom/cask || true
+tap caskroom/versions || true
 tap homebrew/versions|| true
 tap caskroom/versions
 
@@ -28,7 +29,7 @@ install weechat || true
 # install phantomjs || true
 # install llvm || true
 # install jq || true
-# install go || true
+install go || true
 # install clisp || true
 # install python3 || true
 # install erlang || true
@@ -76,7 +77,8 @@ cask install gyazo || true
 cask install atom || true
 # cask install google-japanese-ime || true
 # cask install growl-fork || true
-
+cask install java || true
+cask install java6 || true
 
 tap lestrrat/peco || true
 install peco || true
@@ -85,3 +87,4 @@ install peco || true
 # curl -L http://install.ohmyz.sh | sh
 # curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 # sudo /usr/bin/local/gem install pry rb-readline homesick
+# go get github.com/lestrrat/ghq

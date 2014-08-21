@@ -38,6 +38,7 @@ let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/unite.vim'
 NeoBundleLazy 'derekwyatt/vim-scala',  {"autoload": {"filetypes": ['scala']}}
+NeoBundle 'kchmck/vim-coffee-script'
 
 NeoBundle 'rking/ag.vim'
 let g:agprg="/usr/local/bin/ag --column"
@@ -216,7 +217,10 @@ filetype indent on
 filetype plugin on
 au FileType ruby set ts=2 sw=2 expandtab
 autocmd FileType yaml nmap ,e :execute '!ruby -ryaml -e "begin;YAML::load(open('."'"."%"."'".","."'"."r"."'".').read);rescue ArgumentError=>e;puts e;end"'<CR>
-au BufNewFile,BufRead *.rhtml setf eruby
+au BufNewFile,BufRead *.rhtml setf ruby
+au BufNewFile,BufRead *.ru setf ruby
+au BufNewFile,BufRead Rakefile setf ruby
+au BufNewFile,BufRead Capfile setf ruby
 
 autocmd FileType html imap <buffer> <C-_> <%=  %><Esc>2hi
 autocmd FileType html imap <buffer> <C-E> <%  %><Esc>2hi
@@ -247,6 +251,7 @@ augroup filetypedetect
 augroup END
 au FileType scala set ts=2 sw=2 expandtab
 
+<<<<<<< HEAD
 
 "--------------------------------------------------------------
 " golang
@@ -258,6 +263,14 @@ exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 filetype plugin indent on
 syntax on
 
+"--------------------------------------------------------------
+" scala
+"--------------------------------------------------------------
+augroup filetypedetect
+	autocmd! BufNewFile,BufRead *.coffee setfiletype coffee
+augroup END
+au FileType coffee set ts=2 sw=2 sts=2 expandtab
+	
 
 "-----------------------------------------------------------------------------
 " マップ定義
