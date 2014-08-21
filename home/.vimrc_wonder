@@ -27,7 +27,7 @@ filetype plugin indent on     " Required!
 
 " NeoBundle ここまで
 
-NeoBundle 'Rip-Rip/clang_complete'
+NeoBundleLazy 'Rip-Rip/clang_complete',  {"autoload": {"filetypes": ['cpp']}}
 if has('lua') 
 	NeoBundle 'Shougo/neocomplete'
 else
@@ -37,7 +37,7 @@ let g:neocomplcache_enable_at_startup = 1
 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'derekwyatt/vim-scala'
+NeoBundleLazy 'derekwyatt/vim-scala',  {"autoload": {"filetypes": ['scala']}}
 
 NeoBundle 'rking/ag.vim'
 let g:agprg="/usr/local/bin/ag --column"
@@ -71,6 +71,7 @@ let g:hl_matchit_enable_on_vim_startup=1
 let g:hl_matchit_hl_groupname="Title"
 let g:hl_matchit_allow_ft_regexpt="html\|vim\|ruby\|scala\|java\|sh"
 
+NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
 
 colorscheme delek
 set nocompatible
@@ -245,6 +246,18 @@ augroup filetypedetect
 	autocmd! BufNewFile,BufRead *.sbt setfiletype scala
 augroup END
 au FileType scala set ts=2 sw=2 expandtab
+
+
+"--------------------------------------------------------------
+" golang
+"--------------------------------------------------------------
+" gocode
+set rtp+=$GOROOT/misc/vim
+"golint
+exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+filetype plugin indent on
+syntax on
+
 
 "-----------------------------------------------------------------------------
 " マップ定義
