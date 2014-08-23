@@ -288,7 +288,7 @@ function agp() {
 	$ZAW_EDITOR $FILE
 }
 
-function agvim () {
+function agv() {
   vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
@@ -299,6 +299,8 @@ export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
 if which pry > /dev/null  ; then
+	# nothing
+else
 	alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
 fi
 
