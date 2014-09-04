@@ -221,6 +221,7 @@ alias dops="docker ps"
 alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
+function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2375" }
 
 function jsurl { curl -H "application/json" $@ }
 
@@ -295,8 +296,9 @@ function agv() {
 # config go and ghq
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
+export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
-export PATH="${PATH}:${GOPATH}/bin"
+export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 if which pry > /dev/null  ; then
 	# nothing

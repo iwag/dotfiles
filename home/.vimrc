@@ -71,6 +71,7 @@ NeoBundle 'tpope/vim-haml'
 
 
 "" Go Lang Bundle
+
 NeoBundle "majutsushi/tagbar"
 NeoBundle "fatih/vim-go"
 
@@ -446,6 +447,15 @@ let g:tagbar_type_ruby = {
         \ 'F:singleton methods'
     \ ]
 \ }
+
+filetype off
+filetype plugin indent off
+" set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menuone
 
 
 "" Include user's local vim config
