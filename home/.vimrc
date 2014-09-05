@@ -71,6 +71,7 @@ NeoBundle 'tpope/vim-haml'
 
 
 "" Go Lang Bundle
+
 NeoBundle "majutsushi/tagbar"
 NeoBundle "fatih/vim-go"
 
@@ -449,6 +450,27 @@ let g:tagbar_type_ruby = {
 
 NeoBundle 'rking/ag.vim'
 let g:agprg="/usr/local/bin/ag --column"
+
+" for go-vim's omnicomp
+set completeopt=menuone
+
+if !exists('g:neocomplete#omni_patterns')
+	let g:neocomplete#omni_patterns = {}
+endif
+let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
+
+let g:quickrun_config['go'] = {
+ 	\ 'command': 'go',
+ 	\ 'exec': ['%c run %s']
+ 	\ }
+
+""" vim-go
+" let g:go_bin_path = expand("$GOROOT/bin")
+let g:go_play_open_browser = 0
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "gofmt"
+let g:go_disable_autoinstall = 1
 
 
 "" Include user's local vim config

@@ -221,6 +221,7 @@ alias dops="docker ps"
 alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
+function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2375" }
 
 function jsurl { curl -H "application/json" $@ }
 
@@ -288,20 +289,25 @@ function agp() {
 	$ZAW_EDITOR $FILE
 }
 
-function agvim () {
+function agv() {
   vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
 # config go and ghq
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
+export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
-export PATH="${PATH}:${GOPATH}/bin"
+
+export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
+
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
 fi
 
 if which pry > /dev/null  ; then
+	# nothing
+else
 	alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
 fi
 
