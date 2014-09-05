@@ -35,8 +35,8 @@ install go || true
 # install erlang || true
 # install leiningen || true
 # install clojurescript || true
-#install ruby-build || true
-#install rbenv || true
+install ruby-build || true
+install rbenv || true
 # install heroku-toolbelt || true
 # install opam || true
 # install dub || true

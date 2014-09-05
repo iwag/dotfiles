@@ -297,6 +297,9 @@ function agvim () {
 # git config --global ghq.root ~/Devel/src
 export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOPATH}/bin"
+if [ -e ~/.zsh/ghq.zsh ]; then
+  source ~/.zsh/ghq.zsh
+fi
 
 if which pry > /dev/null  ; then
 	alias pry="/usr/local/lib/ruby/gems/2.0.0/gems/pry-0.10.0/bin/pry"
@@ -305,3 +308,8 @@ fi
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
+
+# for rbenv
+# rbenv install 2.1.0
+# rbenv global 2.1.0
+eval "$(rbenv init -)"
