@@ -80,8 +80,9 @@ cask install atom || true
 cask install java || true
 cask install java6 || true
 
-tap lestrrat/peco || true
+tap peco/peco || true
 install peco || true
+install migemogrep || true
 
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh
