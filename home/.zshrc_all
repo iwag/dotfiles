@@ -298,11 +298,16 @@ function agv() {
 # git config --global ghq.root ~/Devel/src
 export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
+
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 p() { peco | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
 alias ghqjump='ghq list -p | p cd'
+
+if [ -e ~/.zsh/ghq.zsh ]; then
+  source ~/.zsh/ghq.zsh
+fi
 
 if which pry > /dev/null  ; then
 	# nothing
@@ -313,3 +318,8 @@ fi
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
+
+# for rbenv
+# rbenv install 2.1.0
+# rbenv global 2.1.0
+eval "$(rbenv init -)"
