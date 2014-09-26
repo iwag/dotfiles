@@ -300,6 +300,10 @@ export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
+p() { peco | while read LINE; do $@ $LINE; done }
+# alias o='git ls-files | p open'
+alias ghqjump='ghq list -p | p cd'
+
 if which pry > /dev/null  ; then
 	# nothing
 else
