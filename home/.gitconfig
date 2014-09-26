@@ -32,7 +32,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -r
-	editor = emacs -nw
+	editor = vim
 [grep]
 	lineNumber = true
 	 

@@ -301,6 +301,10 @@ export GOPATH="${HOME}/Devel/go"
 
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
+p() { peco | while read LINE; do $@ $LINE; done }
+# alias o='git ls-files | p open'
+alias ghqjump='ghq list -p | p cd'
+
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
 fi

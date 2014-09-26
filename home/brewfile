@@ -79,6 +79,7 @@ cask install atom || true
 # cask install growl-fork || true
 cask install java || true
 cask install java6 || true
+# cask install silverlight || true
 
 tap peco/peco || true
 install peco || true
