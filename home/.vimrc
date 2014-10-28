@@ -87,6 +87,8 @@ NeoBundle "tpope/vim-projectionist"
 NeoBundle "thoughtbot/vim-rspec"
 NeoBundle "majutsushi/tagbar"
 
+" other
+NeoBundle "solarnz/thrift.vim"
 
 
 call neobundle#end()

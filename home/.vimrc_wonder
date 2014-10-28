@@ -38,6 +38,7 @@ let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'Shougo/unite.vim'
 NeoBundleLazy 'derekwyatt/vim-scala',  {"autoload": {"filetypes": ['scala']}}
+NeoBundle 'solarnz/thrift.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 
 NeoBundle 'rking/ag.vim'
@@ -251,7 +252,13 @@ augroup filetypedetect
 augroup END
 au FileType scala set ts=2 sw=2 expandtab
 
-<<<<<<< HEAD
+"--------------------------------------------------------------
+" thrift
+"--------------------------------------------------------------
+augroup filetypedetect
+	autocmd! BufNewFile,BufRead *.thrift setfiletype scala
+augroup END
+au FileType scala set ts=2 sw=2 expandtab
 
 "--------------------------------------------------------------
 " golang
@@ -264,7 +271,7 @@ filetype plugin indent on
 syntax on
 
 "--------------------------------------------------------------
-" scala
+" coffeescript
 "--------------------------------------------------------------
 augroup filetypedetect
 	autocmd! BufNewFile,BufRead *.coffee setfiletype coffee
