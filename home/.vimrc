@@ -475,7 +475,7 @@ let g:go_fmt_command = "gofmt"
 let g:go_disable_autoinstall = 1
 
 
-"" Include user's local vim config
-"" if filereadable(expand("~/.vimrc.wonder"))
-""  source ~/.vimrc.wonder
-"" endif
+" Include user's local vim config
+"if filereadable(expand("~/.vimrc_wonder"))
+" source ~/.vimrc_wonder
+"ndif

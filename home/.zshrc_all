@@ -221,7 +221,9 @@ alias dops="docker ps"
 alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
-function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2375" }
+function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376" }
+export DOCKER_CERT_PATH=/Users/iwag/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
 function jsurl { curl -H "application/json" $@ }
 
@@ -303,9 +305,9 @@ export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 pecoo() { peco | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
-alias ghqjump='ghq list -p | pecoo cd'
-alias branchjump='git branch | pecoo "git checkout"'
-alias sshjump='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
+alias ghqj='ghq list -p | pecoo cd'
+alias branchj='git branch | pecoo "git checkout"'
+alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
 
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
