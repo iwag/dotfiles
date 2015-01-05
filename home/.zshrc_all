@@ -221,7 +221,9 @@ alias dops="docker ps"
 alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
-function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2375" }
+function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376" }
+export DOCKER_CERT_PATH=/Users/iwag/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
 function jsurl { curl -H "application/json" $@ }
 

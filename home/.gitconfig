@@ -12,6 +12,7 @@
 [color]
 	ui = true
 [alias]
+	wip = commit -a -m "wipwip"
 	cm = commit
 	co = checkout
 	l = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %ar%Creset'
@@ -25,6 +26,7 @@
 	rv = checkout HEAD --
 	g = grep -niI
 	difff = diff --stat
+	patience = diff --patience
 [branch]
 	autosetuprebase = always
 [push]
@@ -50,3 +52,5 @@
 	insteadOf = git://github.com/
 	insteadOf = https://github.com/
 	insteadOf = http://github.com/
+	pushinsteadof = git://github.com/
+	pushinsteadOf = https://github.com/
