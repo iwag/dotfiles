@@ -462,10 +462,10 @@ if !exists('g:neocomplete#omni_patterns')
 endif
 let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
 
-let g:quickrun_config['go'] = {
- 	\ 'command': 'go',
- 	\ 'exec': ['%c run %s']
- 	\ }
+"let g:quickrun_config['go'] = {
+" 	\ 'command': 'go',
+" 	\ 'exec': ['%c run %s']
+" 	\ }
 
 """ vim-go
 " let g:go_bin_path = expand("$GOROOT/bin")
