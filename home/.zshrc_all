@@ -27,7 +27,8 @@ cdpath=( ~ )                    # cd のサーチパス
 typeset -U path cdpath fpath manpath  # パスの重複を省く指定
 path=(/usr/local/bin(N-/) /bin(N-/) /usr/sbin(N-/) /sbin(N-/) /usr/bin(N-/) ${path})
 export PATH
-fpath=(/usr/local/share/zsh-completions(N-/) ${fpath})
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 
 # カレントディレクトリに候補がない場合のみ cdpath 上のディレクトリを候補
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories

@@ -80,6 +80,7 @@ cask install atom || true
 # cask install growl-fork || true
 cask install java || true
 cask install java6 || true
+cask install slack || true
 # cask install silverlight || true
 # /Library/Caches/Homebrew/sequel-pro-1.0.2.dmg
 # chrome-remote-desktop
