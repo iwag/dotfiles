@@ -212,7 +212,8 @@ function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c98086
 	local current_branch_name=$(git symbolic-ref --short HEAD | xargs perl -MURI::Escape -e 'print uri_escape($ARGV[0]);')
 	git config --get remote.origin.url | sed -e "s/^.*[:\/]\(.*\/.*\).git$/https:\/\/github.com\/\1\//" | sed -e "s/$/pull\/${current_branch_name}/" | xargs open
 }
-
+alias git-branch-activity="${HOME}/.zsh/git-branch-activity.sh"
+function girep { command git grep "$@" }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -222,7 +223,8 @@ alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
 function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376" }
-export DOCKER_CERT_PATH=/Users/iwag/.boot2docker/certs/boot2docker-vm
+
+export DOCKER_CERT_PATH=${HOME}/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
 function jsurl { curl -H "application/json" $@ }
@@ -306,8 +308,9 @@ export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 pecoo() { peco | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
 alias ghqj='ghq list -p | pecoo cd'
-alias branchj='git branch | pecoo "git checkout"'
+alias branchj='git checkout `git branch | pecoo`'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
+alias branchjj='git-branch-activity | pecoo "git checkout"'
 
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
