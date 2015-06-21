@@ -60,7 +60,7 @@ NeoBundle "Yggdroot/indentLine"
 
 
 "" Javascript Bundle
-NeoBundle "scrooloose/syntastic"
+" NeoBundle "scrooloose/syntastic"
 
 
 "" HTML Bundle
@@ -336,6 +336,7 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'],'passive_filetypes': [] }
 
 " vim-airline
 let g:airline_enable_syntastic = 1
@@ -475,7 +476,7 @@ let g:go_fmt_command = "gofmt"
 let g:go_disable_autoinstall = 1
 
 
-" Include user's local vim config
-"if filereadable(expand("~/.vimrc_wonder"))
-" source ~/.vimrc_wonder
-"ndif
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.wonder"))
+  source ~/.vimrc.wonder
+endif
