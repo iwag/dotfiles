@@ -7,16 +7,19 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.8.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [color]
 	ui = true
 [alias]
+	ca = commit -a
 	wip = commit -a -m "wipwip"
+	ammend = commit --amend
 	cm = commit
 	co = checkout
 	l = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %ar%Creset'
-	logs = log --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
+	logs = log -p --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
+	logss = log --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
 	st = status -sb
 	pl = pull --rebase --prune
 	sup = submodule update
@@ -27,6 +30,7 @@
 	g = grep -niI
 	difff = diff --stat
 	patience = diff --patience
+    resethard = reset --hard
 [branch]
 	autosetuprebase = always
 [push]
