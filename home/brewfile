@@ -42,12 +42,13 @@ install rbenv || true
 # install opam || true
 # install dub || true
 install sbt || true
+install maven || true
 # install dmd || true
 # install plt-racket || true
 # install haskell-platform || true
 # install cpanminus || true
 
-# cask install keyremap4macbook || true
+cask install karabiner || true
 # cask install dropbox || true
 # cask install hipchat || true
 # cask install skype || true

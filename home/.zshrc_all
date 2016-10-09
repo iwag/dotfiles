@@ -136,11 +136,7 @@ alias -g M="| $PAGER"
 alias les="less"        # for typo
 
 #### ps
-if [ $ARCHI = "irix" ]; then
-  alias psa='ps -ef'
-else;
-  alias psa='ps auxw'
-fi
+alias psa='ps auxw'
 function pst() {                # CPU 使用率の高い方から8つ
   psa | head -n 1
   psa | sort -r -n +2 | grep -v "ps -auxww" | grep -v grep | head -n 8
@@ -156,6 +152,7 @@ function psg() {
 
 #### ls
 #### dircolor
+ARCHI="mac"
 if [ $ARCHI = "linux" ]; then
   alias ls="ls -F --color=auto --show-control-char"
   alias lscolor='ls -F --color=always --show-control-char'
@@ -224,7 +221,6 @@ alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
 function docker_host { echo "tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376" }
-
 export DOCKER_CERT_PATH=${HOME}/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
@@ -317,8 +313,8 @@ if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
 fi
 
-if [ -e ~/.zshrc_private ]; then
-  source ~/.zshrc_private
+if [ -e ~/.zsh/.zshrc_private ]; then
+  source ~/.zsh/.zshrc_private
 fi
 
 # for rbenv
