@@ -23,7 +23,6 @@ install nkf || true
 install zsh-completions || true
 install lv || true
 # install gcc47 || true
-install the_silver_searcher || true
 install weechat || true
 install nodebrew || true
 
@@ -31,11 +30,7 @@ install nodebrew || true
 # install llvm || true
 # install jq || true
 install go || true
-# install clisp || true
-# install python3 || true
-# install erlang || true
-# install leiningen || true
-# install clojurescript || true
+install pt || true
 install ruby-build || true
 install rbenv || true
 # install heroku-toolbelt || true
@@ -43,6 +38,7 @@ install rbenv || true
 # install dub || true
 install sbt || true
 install maven || true
+install typesafe-activator || true
 # install dmd || true
 # install plt-racket || true
 # install haskell-platform || true
@@ -78,7 +74,6 @@ cask install limechat || true
 cask install gyazo || true
 cask install atom || true
 # cask install google-japanese-ime || true
-# cask install growl-fork || true
 cask install java || true
 cask install java6 || true
 cask install slack || true

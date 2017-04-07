@@ -30,7 +30,7 @@
 	g = grep -niI
 	difff = diff --stat
 	patience = diff --patience
-    resethard = reset --hard
+	resethard = reset --hard
 [branch]
 	autosetuprebase = always
 [push]
@@ -41,7 +41,7 @@
 	editor = vim
 [grep]
 	lineNumber = true
-	 
+
 [pager]
 	log = diff-highlight | less
 	show = diff-highlight | less
