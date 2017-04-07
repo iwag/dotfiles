@@ -46,8 +46,6 @@
 	log = diff-highlight | less
 	show = diff-highlight | less
 	diff = diff-highlight | less
-[http]
-	sslVerify = false
 
 [ghq]
 	root = /Users/iwag/Devel/src
