@@ -81,6 +81,7 @@ cask install slack || true
 # chrome-remote-desktop
 cask install osxfuse || true
 cask install veracrypt || true
+cask install tunnelblick || true
 
 tap peco/peco || true
 install peco || true
