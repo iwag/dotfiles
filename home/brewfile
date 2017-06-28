@@ -2,7 +2,7 @@
 tap caskroom/cask || true
 tap caskroom/versions || true
 tap homebrew/versions|| true
-tap caskroom/versions
+tap caskroom/drivers || true
 
 # tap phinze/homebrew-cask || true
 tap iwag/versions|| true
@@ -30,6 +30,7 @@ install nodebrew || true
 # install llvm || true
 # install jq || true
 install go || true
+install protobuf || true
 install pt || true
 install ruby-build || true
 install rbenv || true
@@ -38,6 +39,7 @@ install rbenv || true
 # install dub || true
 install sbt || true
 install maven || true
+install gradle || true
 install typesafe-activator || true
 # install dmd || true
 # install plt-racket || true
@@ -79,9 +81,11 @@ cask install java6 || true
 cask install slack || true
 # /Library/Caches/Homebrew/sequel-pro-1.0.2.dmg
 # chrome-remote-desktop
-cask install osxfuse || true
-cask install veracrypt || true
+cask install osxfuse veracrypt || true
 cask install tunnelblick || true
+cask install openoffice || true
+cask install vlc || true
+# couldn't now, cask install vcp-ftdi-driver
 
 tap peco/peco || true
 install peco || true
