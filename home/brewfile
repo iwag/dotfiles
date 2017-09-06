@@ -34,6 +34,7 @@ install protobuf || true
 install pt || true
 install ruby-build || true
 install rbenv || true
+install python3 || true
 # install heroku-toolbelt || true
 # install opam || true
 # install dub || true
@@ -85,6 +86,7 @@ cask install osxfuse veracrypt || true
 cask install tunnelblick || true
 cask install openoffice || true
 cask install vlc || true
+cask install visual-studio-code
 # couldn't now, cask install vcp-ftdi-driver
 
 tap peco/peco || true
