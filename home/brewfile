@@ -26,7 +26,6 @@ install lv || true
 install weechat || true
 install nodebrew || true
 
-# install phantomjs || true
 # install llvm || true
 # install jq || true
 install go || true
@@ -48,8 +47,8 @@ install typesafe-activator || true
 # install cpanminus || true
 
 cask install karabiner || true
+# if high sierra, cask install karabiner-elements || true
 # cask install dropbox || true
-# cask install hipchat || true
 # cask install skype || true
 # cask install bathyscaphe || true
 # cask install robomongo || true
@@ -59,13 +58,11 @@ cask install github || true
 cask install sourcetree || true
 # cask install google-chrome || true
 # cask install firefox || true
-cask install kobito || true
+# cask install kobito || true
 cask install virtualbox || true
-cask install vagrant || true
-# cask install vlc || true
+cask install docker-machine || true
 # cask install vmware-fusion || true
 # cask install intellij-idea-community || true
-cask install sublime-text || true
 # cask install totalspaces || true
 # cask install totalfinder || true
 cask install iterm2 || true
@@ -75,7 +72,7 @@ cask install iterm2 || true
 cask install appcleaner || true
 cask install limechat || true
 cask install gyazo || true
-cask install atom || true
+# cask install atom || true
 # cask install google-japanese-ime || true
 cask install java || true
 cask install java6 || true
