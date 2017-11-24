@@ -212,6 +212,10 @@ function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c98086
 }
 alias git-branch-activity="${HOME}/.zsh/git-branch-activity.sh"
 function girep { command git grep "$@" }
+function gff { command git diff "$@" }
+function ammend { command git add --ammend "$@" }
+function wip { command git commit -a -m "wip" }
+function glogs { command git logs }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
