@@ -51,7 +51,10 @@ plugins=(git osx brew docker git-extras web-search dirhistory github sbt scala r
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# To use zprezto
+# comment all oh-my-zsh config and add the following lines
+# source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 export PATH="/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:/usr/X11R6/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
