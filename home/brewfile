@@ -25,6 +25,7 @@ install lv || true
 # install gcc47 || true
 install weechat || true
 install nodebrew || true
+install nvim || true
 
 # install llvm || true
 # install jq || true
@@ -41,24 +42,19 @@ install sbt || true
 install maven || true
 install gradle || true
 install typesafe-activator || true
-# install dmd || true
-# install plt-racket || true
-# install haskell-platform || true
-# install cpanminus || true
 
 cask install karabiner || true
 # if high sierra, cask install karabiner-elements || true
 # cask install dropbox || true
-# cask install skype || true
 # cask install bathyscaphe || true
 # cask install robomongo || true
-# cask install Chromium || true
+cask install Chromium || true
 cask install github || true
-# cask install alfred || true
+cask install alfred || true
 cask install sourcetree || true
+cask install selfcontroll || true
 # cask install google-chrome || true
 # cask install firefox || true
-# cask install kobito || true
 cask install virtualbox || true
 cask install docker-machine || true
 # cask install vmware-fusion || true

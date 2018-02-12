@@ -65,17 +65,17 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-if v:version > 702
-	NeoBundle 'Shougo/vimshell.vim'
-endif
+"if v:version > 702
+"	NeoBundle 'Shougo/vimshell.vim'
+"endif
 
 "" Vim-Session
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-session'
+"NeoBundle 'xolox/vim-misc'
+"NeoBundle 'xolox/vim-session'
 
 "" Snippets
 " NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+"NeoBundle 'honza/vim-snippets'
 
 "" Color
 NeoBundle 'tomasr/molokai'
