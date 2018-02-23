@@ -164,12 +164,11 @@ alias ll='ls -al'
 #### command
 alias du='du -k'
 alias mv='mv -iv'
-#alias  memo    'skkfep -viesc -e jvim3 ~/memo.txt'
 alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
-alias view="vim -R"
-alias vw="vim -R"
+alias view="vi -R"
+alias nw="nv -R"
 alias nv="nvim"
 
 # short name
@@ -228,7 +227,6 @@ function rm() {
     local DATE=`date "+%y%m%d-%H%M%S"`
     mkdir ~/.trash/$DATE
     for i in $@; do
-      # 対象が ~/.trash/ 以下なファイルならば /bin/rm を呼び出したいな
       if [ -e $i ]; then
         mv $i ~/.trash/$DATE/
       else
