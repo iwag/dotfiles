@@ -5,6 +5,7 @@ tap homebrew/versions|| true
 tap caskroom/drivers || true
 
 # tap phinze/homebrew-cask || true
+tap caskroom/fonts 
 tap iwag/versions|| true
 update || true
 
@@ -81,6 +82,7 @@ cask install openoffice || true
 cask install vlc || true
 cask install visual-studio-code
 # couldn't now, cask install vcp-ftdi-driver
+brew cask install font-source-code-pro
 
 tap peco/peco || true
 install peco || true
