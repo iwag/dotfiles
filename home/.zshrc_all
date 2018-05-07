@@ -249,7 +249,7 @@ TIMEFMT="\
     The  CPU percentage.              :%P"
 
 # zaw
-ZAW_EDITOR=vim
+ZAW_EDITOR=nv
 source ~/.zsh/zaw/zaw.zsh
 
 [ -n "`alias history`" ] && unalias history # for ohmyzsh
@@ -257,6 +257,8 @@ source ~/.zsh/zaw/zaw.zsh
 # bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
+#bindkey '^[b' zaw-recent-branches-file
+#bindkey '^[B' zaw-branches-file
 
 function peco-select-history() {
 	local tac
