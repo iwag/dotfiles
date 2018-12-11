@@ -31,7 +31,6 @@ install nvim || true
 # install llvm || true
 # install jq || true
 install go || true
-install protobuf || true
 install pt || true
 install ruby-build || true
 install rbenv || true
@@ -48,7 +47,6 @@ cask install karabiner || true
 # if high sierra, cask install karabiner-elements || true
 # cask install dropbox || true
 # cask install bathyscaphe || true
-# cask install robomongo || true
 cask install Chromium || true
 cask install github || true
 cask install alfred || true
@@ -67,12 +65,10 @@ cask install iterm2 || true
 # cask install nethackcocoa || true
 # cask install soundflower || true
 cask install appcleaner || true
-cask install limechat || true
 cask install gyazo || true
-# cask install atom || true
+cask install visual-studio-code || true
 # cask install google-japanese-ime || true
 cask install java || true
-cask install java6 || true
 cask install slack || true
 # /Library/Caches/Homebrew/sequel-pro-1.0.2.dmg
 # chrome-remote-desktop
