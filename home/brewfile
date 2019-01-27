@@ -24,7 +24,6 @@ install nkf || true
 install zsh-completions || true
 install lv || true
 # install gcc47 || true
-install weechat || true
 install nodebrew || true
 install nvim || true
 
@@ -36,7 +35,6 @@ install ruby-build || true
 install rbenv || true
 install python3 || true
 # install heroku-toolbelt || true
-# install opam || true
 # install dub || true
 install sbt || true
 install maven || true
@@ -62,7 +60,6 @@ cask install docker-machine || true
 # cask install totalfinder || true
 cask install iterm2 || true
 # cask install light-table || true
-# cask install nethackcocoa || true
 # cask install soundflower || true
 cask install appcleaner || true
 cask install gyazo || true
