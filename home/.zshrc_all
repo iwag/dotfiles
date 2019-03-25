@@ -263,6 +263,8 @@ source ~/.zsh/zaw/zaw.zsh
 # bindkey '^[r' zaw-history
 bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
+#bindkey '^[b' zaw-recent-branches-file
+#bindkey '^[B' zaw-branches-file
 
 function peco-select-history() {
 	local tac
@@ -303,6 +305,8 @@ export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
 
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 
 pecoo() { peco | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
