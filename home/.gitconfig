@@ -7,7 +7,7 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /usr/local/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [color]
 	ui = true
@@ -38,17 +38,17 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -r
-	editor = vim
+	editor = nvim
 [grep]
 	lineNumber = true
 
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+#	log = diff-highlight | less
+#	show = diff-highlight | less
+#	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/iwag/Devel/src
+	root = /Users/lbcstudios/Devel/src
 
 [url "git@github.com:"]
 	insteadOf = git://github.com/
@@ -56,3 +56,13 @@
 	insteadOf = http://github.com/
 	pushinsteadof = git://github.com/
 	pushinsteadOf = https://github.com/
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[url "https://"]
+	insteadOf = git://
+[commit]
+	template = /Users/lbcstudios/.stCommitMsg

@@ -29,13 +29,14 @@ install nodebrew || true
 install nvim || true
 
 # install llvm || true
-# install jq || true
+install jq || true
 install go || true
 install protobuf || true
 install pt || true
 install ruby-build || true
 install rbenv || true
 install python3 || true
+install pipenv || true
 # install heroku-toolbelt || true
 # install opam || true
 # install dub || true
@@ -92,6 +93,7 @@ install migemogrep || true
 # curl -L http://install.ohmyz.sh | sh
 # curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 # sudo /usr/bin/local/gem install pry rb-readline homesick
+# gem install rouge
 # go get github.com/lestrrat/ghq
 #
 
