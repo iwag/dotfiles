@@ -113,7 +113,7 @@ autoload -U compinit; compinit -u
 
 
 # for byobu tmux
-if [ $TERM = "screen" ] || [ $SCREEN = 1 ]; then
+if [ $TERM = "screen" ]; then # || [ $SCREEN = 1 ]; then
 	stty erase "^?"
 fi
 
@@ -167,7 +167,9 @@ alias mv='mv -iv'
 alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
-alias view="vi -R"
+
+alias vi="nvim "
+alias view="nvim -R"
 alias nw="nv -R"
 alias nv="nvim"
 
@@ -218,7 +220,11 @@ alias dorun="docker run"
 alias dostop="docker stop"
 alias doimage="docker images"
 alias dc="docker-compose"
+alias dcup="docker-compose up"
+alias dcdown="docker-compose down"
 alias dm="docker-machine"
+alias dmstart="docker-machine start"
+alias dmstop="docker-machine stop"
 function dmip { echo $(docker-machine ip) }
 
 function jsurl { curl -H "application/json" $@ }
@@ -249,7 +255,7 @@ TIMEFMT="\
     The  CPU percentage.              :%P"
 
 # zaw
-ZAW_EDITOR=nv
+ZAW_EDITOR=nvim
 source ~/.zsh/zaw/zaw.zsh
 
 [ -n "`alias history`" ] && unalias history # for ohmyzsh
