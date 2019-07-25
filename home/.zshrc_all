@@ -265,6 +265,14 @@ bindkey '^[o' zaw-git-files
 bindkey '^[e' zaw-open-file
 #bindkey '^[b' zaw-recent-branches-file
 #bindkey '^[B' zaw-branches-file
+#
+#
+
+function peco-git-files { 
+   nvim $(git ls-files | fzf)
+}
+zle -N peco-git-files
+bindkey '^[g' peco-git-files
 
 function peco-select-history() {
 	local tac
@@ -274,29 +282,13 @@ function peco-select-history() {
 		tac="tail -r"
 	fi
 	BUFFER=$(history -n 1 | \
-		eval $tac | \
-		peco --query "$LBUFFER")
+		eval $tac | fzf)
+#		peco --query "$LBUFFER")
 	CURSOR=$#BUFFER
 	#zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^[r' peco-select-history
-
-function agp() {
-	local tac
-	if which tac > /dev/null; then
-		tac="tac"
-	else
-		tac="tail -r"
-	fi
-	FILE=$(ag $@ | peco |  awk -F':' '{print $1}')
-	
-	$ZAW_EDITOR $FILE
-}
-
-function agv() {
-  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-}
 
 # config go and ghq
 # go get github.com/motemen/ghq
@@ -306,9 +298,10 @@ export GOPATH="${HOME}/Devel/go"
 
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/Devel/flutter/bin:$PATH
 
 
-pecoo() { peco | while read LINE; do $@ $LINE; done }
+pecoo() { fzf | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
 alias ghqj='ghq list -p | pecoo cd'
 alias branchj='git checkout `git branch | pecoo`'
@@ -330,3 +323,9 @@ eval "$(rbenv init -)"
 
 # for nodebrew
 PATH=$HOME/.nodebrew/current/bin:$PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/lbcstudios/sdkman"
+[[ -s "/Users/lbcstudios/sdkman/bin/sdkman-init.sh" ]] && source "/Users/lbcstudios/sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
