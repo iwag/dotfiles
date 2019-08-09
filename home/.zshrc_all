@@ -32,8 +32,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 #### history
 HISTFILE="$HOME/.zhistory"      # 履歴ファイル
-HISTSIZE=100000           # メモリ上に保存される $HISTFILE の最大サイズ？
-SAVEHIST=1000000                  # 保存される最大履歴数
+HISTSIZE=1000000           # メモリ上に保存される $HISTFILE の最大サイズ？
+SAVEHIST=10000000                  # 保存される最大履歴数
 
 #### option, limit, bindkey
 setopt extended_history         # コマンドの開始時刻と経過時間を登録
@@ -168,6 +168,7 @@ alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
 
+export EDITOR=nvim
 alias vi="nvim "
 alias view="nvim -R"
 alias nw="nv -R"
@@ -254,25 +255,38 @@ TIMEFMT="\
     Elapsed time in seconds.          :%E
     The  CPU percentage.              :%P"
 
-# zaw
-ZAW_EDITOR=nvim
-source ~/.zsh/zaw/zaw.zsh
+# fzf
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
 
-[ -n "`alias history`" ] && unalias history # for ohmyzsh
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
 
-# bindkey '^[r' zaw-history
-bindkey '^[o' zaw-git-files
-bindkey '^[e' zaw-open-file
-#bindkey '^[b' zaw-recent-branches-file
-#bindkey '^[B' zaw-branches-file
-#
-#
+# fh - repeat history
+fh() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+}
+# fh - repeat history
+fhh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+}
 
-function peco-git-files { 
-   nvim $(git ls-files | fzf)
+peco-git-files() { 
+   ${EDITOR} -- $(git ls-files | fzf)
 }
 zle -N peco-git-files
-bindkey '^[g' peco-git-files
+bindkey '^[o' peco-git-files
 
 function peco-select-history() {
 	local tac
@@ -288,7 +302,7 @@ function peco-select-history() {
 	#zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^[r' peco-select-history
+#bindkey '^[r' peco-select-history
 
 # config go and ghq
 # go get github.com/motemen/ghq
