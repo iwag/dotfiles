@@ -39,8 +39,8 @@ install pipenv || true
 # install dub || true
 install sbt || true
 install maven || true
-install gradle || true
-install typesafe-activator || true
+#install gradle || true
+install fzf || true
 
 cask install karabiner || true
 # if high sierra, cask install karabiner-elements || true
@@ -78,8 +78,6 @@ cask install visual-studio-code
 # couldn't now, cask install vcp-ftdi-driver
 brew cask install font-source-code-pro
 
-tap peco/peco || true
-install peco || true
 install migemogrep || true
 
 # following commands are not brew 
