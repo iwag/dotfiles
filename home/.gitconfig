@@ -48,7 +48,7 @@
 #	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/lbcstudios/Devel/src
+	root = /Users/iwag/Devel/src
 
 [url "git@github.com:"]
 	insteadOf = git://github.com/
@@ -64,5 +64,3 @@
 	required = true
 [url "https://"]
 	insteadOf = git://
-[commit]
-	template = /Users/lbcstudios/.stCommitMsg
