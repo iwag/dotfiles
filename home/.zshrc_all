@@ -303,6 +303,8 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 #bindkey '^[r' peco-select-history
+export FZF_CTRL_R_OPTS= # to enable ^R
+export FZF_DEFAULT_OPTS= # to enable ^R
 
 # config go and ghq
 # go get github.com/motemen/ghq
