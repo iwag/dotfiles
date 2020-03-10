@@ -1,6 +1,6 @@
 [user]
-	name = iwag
-	email = iwagame@gmail.com
+	name = iwakami
+	email = takuya.iwakami@nulab.com
 [core]
 	excludesfile = /Users/iwag/.gitignore_global
 [difftool "sourcetree"]
@@ -17,6 +17,7 @@
 	ammend = commit --amend
 	cm = commit
 	co = checkout
+	po = push origin
 	l = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %ar%Creset'
 	logs = log -p --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
 	logss = log --graph --decorate --pretty=format:\"%ad [%cn] <%h> %n %Cgreen%d%Creset %s %n\" --stat
@@ -48,7 +49,7 @@
 #	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/iwag/Devel/src
+	root = /Users/takuyaiwakami/Devel/src
 
 [url "git@github.com:"]
 	insteadOf = git://github.com/
