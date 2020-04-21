@@ -1,9 +1,4 @@
 autoload -U zmv
-# % zmv '(*).jpeg' '$1.jpg'
-# % zmv '(**/)foo(*).jpeg' '$1bar$2.jpg'
-# % zmv -n '(**/)foo(*).jpeg' '$1bar$2.jpg' # 実行せずパターン表示のみ
-# % zmv '(*)' '${(L)1}; # 大文字→小文字
-# % zmv -W '*.c.org' 'org/*.c' #「(*)」「$1」を「*」で済ませられる
 alias mmv='noglob zmv -W'  # 引数のクォートも面倒なので
 # % mmv *.c.org org/*.c
 
@@ -22,10 +17,7 @@ export PATH
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 
-# カレントディレクトリに候補がない場合のみ cdpath 上のディレクトリを候補
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
-# cf. zstyle ':completion:*:path-directories' hidden true
-# cf. cdpath 上のディレクトリは補完候補から外れる
 
 ## 補完時に大小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -40,8 +32,6 @@ setopt extended_history         # コマンドの開始時刻と経過時間を�
 setopt hist_ignore_dups         # 直前のコマンドと同一ならば登録しない
 setopt hist_ignore_all_dups     # 登録済コマンド行は古い方を削除
 setopt hist_reduce_blanks # 余分な空白は詰めて登録(空白数違い登録を防ぐ)
-#setopt append_history  # zsh を終了させた順にファイルに記録(デフォルト)
-#setopt inc_append_history # 同上、ただしコマンドを入力した時点で記録
 setopt share_history    # ヒストリの共有。(append系と異なり再読み込み不要、これを設定すれば append 系は不要)
 setopt hist_no_store            # historyコマンドは登録しない
 setopt hist_ignore_space # コマンド行先頭が空白の時登録しない(直後ならば呼べる)
@@ -209,8 +199,10 @@ alias git-branch-activity="${HOME}/.zsh/git-branch-activity.sh"
 function girep { command git grep "$@" }
 function gff { command git diff "$@" }
 function ammend { command git add --ammend "$@" }
-function wip { command git commit -a -m "wip" }
 function glogs { command git logs }
+function gitwhere { command git rev-parse --abbrev-ref HEAD }
+function wp { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` }
+function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
