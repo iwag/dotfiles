@@ -116,21 +116,7 @@ alias m="$PAGER"
 alias -g L="| $PAGER"
 alias -g M="| $PAGER"
 alias les="less"        # for typo
-
-#### ps
-alias psa='ps auxw'
-function pst() {                # CPU 使用率の高い方から8つ
-  psa | head -n 1
-  psa | sort -r -n +2 | grep -v "ps -auxww" | grep -v grep | head -n 8
-}
-function psm() {                # メモリ占有率の高い方から8つ
-  psa | head -n 1
-  psa | sort -r -n +3 | grep -v "ps -auxww" | grep -v grep | head -n 8
-}
-function psg() {
-  psa | head -n 1
-  psa | grep $* | grep -v "ps -auxww" | grep -v grep
-}
+alias lv="less" # TODO see if lv is not installed
 
 #### ls
 #### dircolor
@@ -203,6 +189,7 @@ function glogs { command git logs }
 function gitwhere { command git rev-parse --abbrev-ref HEAD }
 function wp { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` }
 function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
+function gitbranch5 { command git branch --sort=authordate | tail -10 }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -295,13 +282,13 @@ export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/Devel/flutter/bin:$PATH
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 pecoo() { fzf | while read LINE; do $@ $LINE; done }
 # alias o='git ls-files | p open'
 alias ghqj='ghq list -p | pecoo cd'
-alias branchj='git checkout `git branch | pecoo`'
+alias gitcoj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
-alias branchjj='git-branch-activity | pecoo "git checkout"'
 
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
@@ -324,3 +311,4 @@ export SDKMAN_DIR="/Users/lbcstudios/sdkman"
 [[ -s "/Users/lbcstudios/sdkman/bin/sdkman-init.sh" ]] && source "/Users/lbcstudios/sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
