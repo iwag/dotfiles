@@ -175,6 +175,9 @@ function hgrep() { history | grep $@ }
 function grep { command grep --color=tty "$@" }
 
 # git
+alias dev="git checkout develop"
+alias master="git checkout master"
+alias gitbpradd="gitb pr add -b develop"
 alias git-ammend="git commit --amend"
 alias git-ca="git commit -a "
 function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c980863ccfa
@@ -187,9 +190,12 @@ function gff { command git diff "$@" }
 function ammend { command git add --ammend "$@" }
 function glogs { command git logs }
 function gitwhere { command git rev-parse --abbrev-ref HEAD }
-function wp { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` }
+function gitkey { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]' }
+function subbranch { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]' }
 function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
-function gitbranch5 { command git branch --sort=authordate | tail -10 }
+function fixtest { command git commit -a "$@" -m "`gitkey` fix tests" }
+function cleanup { command git commit -a "$@" -m "`gitkey` cleanup" }
+function gitbranch5 { command git branch --sort=-authordate | tail -15 }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -289,6 +295,7 @@ pecoo() { fzf | while read LINE; do $@ $LINE; done }
 alias ghqj='ghq list -p | pecoo cd'
 alias gitcoj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
+alias gsw='git switch -'
 
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
@@ -304,7 +311,7 @@ fi
 eval "$(rbenv init -)"
 
 # for nodebrew
-PATH=$HOME/.nodebrew/current/bin:$PATH
+#PATH=$HOME/.nodebrew/current/bin:$PATH
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/lbcstudios/sdkman"

@@ -49,7 +49,7 @@
 #	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/takuyaiwakami/Devel/src
+	root = /Users/iwag/Dev
 
 [url "git@github.com:"]
 	insteadOf = git://github.com/
