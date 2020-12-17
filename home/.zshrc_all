@@ -195,7 +195,7 @@ function subbranch { command git rev-parse --abbrev-ref HEAD | python -c 'import
 function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
 function fixtest { command git commit -a "$@" -m "`gitkey` fix tests" }
 function cleanup { command git commit -a "$@" -m "`gitkey` cleanup" }
-function gitbranch5 { command git branch --sort=-authordate | tail -15 }
+function gitbranch5 { command git branch --sort=authordate | tail -15 | tail -r }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
