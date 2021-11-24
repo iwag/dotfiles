@@ -195,7 +195,7 @@ function subbranch { command git rev-parse --abbrev-ref HEAD | python -c 'import
 function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
 function fixtest { command git commit -a "$@" -m "`gitkey` fix tests" }
 function cleanup { command git commit -a "$@" -m "`gitkey` cleanup" }
-function gitbranch5 { command git branch --sort=authordate | tail -15 | tail -r }
+function gitbranch5 { command git branch --sort=authordate | tail -15 }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -281,6 +281,7 @@ bindkey '^[r' peco-select-history
 # config go and ghq
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
+export PATH="/opt/go116/bin:$PATH"
 export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
 
@@ -304,6 +305,8 @@ fi
 if [ -e ~/.zsh/.zshrc_private ]; then
   source ~/.zsh/.zshrc_private
 fi
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # for rbenv
 # rbenv install 2.1.0
