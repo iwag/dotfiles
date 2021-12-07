@@ -1,6 +1,6 @@
 [user]
 	name = iwakami
-	email = takuya.iwakami@nulab.com
+	email = iwagame@gmail.com
 [core]
 	excludesfile = /Users/iwag/.gitignore_global
 [difftool "sourcetree"]
@@ -40,6 +40,7 @@
 	excludesfile = ~/.gitignore
 	pager = less -r
 	editor = nvim
+	filemode = false
 [grep]
 	lineNumber = true
 

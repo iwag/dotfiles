@@ -72,6 +72,8 @@ export PATH="/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:/usr/X11R
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-source ~/.zshrc_all
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export GIT_STATUS_IGNORE_SUBMODULES=false
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+source ~/.zshrc_all
