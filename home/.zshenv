@@ -101,3 +101,5 @@ unset userpath addpath i chksame # 後始末
 if [ -e ~/.zshenv_private ]; then
     source ~/.zshenv_private
 fi
+
+export PATH="/home/linuxbrew/.linuxbrew/opt/ruby@2.5/bin:$PATH"
