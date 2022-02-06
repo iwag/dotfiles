@@ -177,22 +177,29 @@ function grep { command grep --color=tty "$@" }
 # git
 alias dev="git checkout develop"
 alias master="git checkout master"
+alias main="git checkout main"
+alias staging="git checkout staging"
 alias gitbpradd="gitb pr add -b develop"
 alias git-ammend="git commit --amend"
 alias git-ca="git commit -a "
+alias co="git checkout"
+alias pl="git pull"
+alias prview="gh pr view --web"
 function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c980863ccfa
 	local current_branch_name=$(git symbolic-ref --short HEAD | xargs perl -MURI::Escape -e 'print uri_escape($ARGV[0]);')
 	git config --get remote.origin.url | sed -e "s/^.*[:\/]\(.*\/.*\).git$/https:\/\/github.com\/\1\//" | sed -e "s/$/pull\/${current_branch_name}/" | xargs open
 }
 alias git-branch-activity="${HOME}/.zsh/git-branch-activity.sh"
+function gtagl { command git describe --tags --abbrev=0 }
 function girep { command git grep "$@" }
 function gff { command git diff "$@" }
 function ammend { command git add --ammend "$@" }
 function glogs { command git logs }
 function gitwhere { command git rev-parse --abbrev-ref HEAD }
-function gitkey { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]' }
+function gitkey { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]' }
 function subbranch { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]' }
-function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[0]'` && git ammend }
+function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]'` && git ammend }
+function wpee { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD` && git ammend }
 function fixtest { command git commit -a "$@" -m "`gitkey` fix tests" }
 function cleanup { command git commit -a "$@" -m "`gitkey` cleanup" }
 function gitbranch5 { command git branch --sort=authordate | tail -15 }
@@ -281,10 +288,9 @@ bindkey '^[r' peco-select-history
 # config go and ghq
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
-export PATH="/opt/go116/bin:$PATH"
+#export PATH="/opt/go116/bin:$PATH"
 export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
-
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/Devel/flutter/bin:$PATH
@@ -298,6 +304,21 @@ alias gitcoj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
 alias gsw='git switch -'
 
+alias gr="go run internal/main.go"
+alias t="task"
+alias tt="task || task precommit"
+alias precommit="task precommit"
+alias nr='npm run start'
+alias tidy="go mod tidy"
+alias cl="clear"
+function start() {
+  if [ -e internal/main.go ]; then
+    go run internal/main.go  
+  elif [ -e package.json ]; then
+    npm run start 
+  fi
+}
+
 if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
 fi
@@ -306,7 +327,9 @@ if [ -e ~/.zsh/.zshrc_private ]; then
   source ~/.zsh/.zshrc_private
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -e ~/home/linuxbrew ]; then
+   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # for rbenv
 # rbenv install 2.1.0
@@ -314,11 +337,14 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(rbenv init -)"
 
 # for nodebrew
-#PATH=$HOME/.nodebrew/current/bin:$PATH
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/lbcstudios/sdkman"
-[[ -s "/Users/lbcstudios/sdkman/bin/sdkman-init.sh" ]] && source "/Users/lbcstudios/sdkman/bin/sdkman-init.sh"
+PATH=$HOME/.nodebrew/current/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/Users/takuya.iwakami/sdkman"
+# [[ -s "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh" ]] && source "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh"
+
+eval "$(direnv hook zsh)"
+
