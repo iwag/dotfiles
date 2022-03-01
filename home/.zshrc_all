@@ -112,7 +112,7 @@ fi
 
 #### PAGER
 alias less="$PAGER"
-alias m="$PAGER"
+#alias m="$PAGER"
 alias -g L="| $PAGER"
 alias -g M="| $PAGER"
 alias les="less"        # for typo
@@ -129,9 +129,9 @@ if [ $ARCHI = "linux" ]; then
 else
 fi
 alias kls='ls'
-alias qls='ls' # Shift-PageUp を抜けるのについ q を打ってしまうのを回避
+alias qls='ls' 
 alias sl='ls'
-alias s='ls'
+#alias s='ls'
 alias lf='ls'
 alias l='ls'
 alias la='ls -a'
@@ -144,18 +144,19 @@ alias w3m='w3m -X'
 alias xinit='ssh-agent xinit'
 alias bell="echo '\a'"
 
-alias vi="nvim "
+alias vi="vim "
 alias view="nvim -R"
 alias nw="nv -R"
 alias nv="nvim"
 
 # short name
 alias h='head'
-alias t='tail'
-alias g='grep'
+#alias t='tail'
+#alias g='grep'
 alias c='cat'
-alias j='jobs'
+#alias j='jobs'
 alias v="nvim -R"
+alias cl="clear"
 
 ## global alias
 alias -g H='| head'
@@ -185,24 +186,33 @@ alias git-ca="git commit -a "
 alias co="git checkout"
 alias pl="git pull"
 alias prview="gh pr view --web"
+alias prcreate="gh pr create --web"
+alias repoview="gh repo view --web"
+alias ghash="git rev-list HEAD H -1"
 function git-propen2() { # by laiso http://qiita.com/laiso/items/8a30e3656c980863ccfa
 	local current_branch_name=$(git symbolic-ref --short HEAD | xargs perl -MURI::Escape -e 'print uri_escape($ARGV[0]);')
 	git config --get remote.origin.url | sed -e "s/^.*[:\/]\(.*\/.*\).git$/https:\/\/github.com\/\1\//" | sed -e "s/$/pull\/${current_branch_name}/" | xargs open
 }
 alias git-branch-activity="${HOME}/.zsh/git-branch-activity.sh"
-function gtagl { command git describe --tags --abbrev=0 }
+function taglatest { command git describe --tags --abbrev=0 }
 function girep { command git grep "$@" }
 function gff { command git diff "$@" }
 function ammend { command git add --ammend "$@" }
 function glogs { command git logs }
-function gitwhere { command git rev-parse --abbrev-ref HEAD }
+function gitwhere { 
+   local branch=`git rev-parse --abbrev-ref HEAD` 
+   if [ $branch = 'master' ] || [ $branch = 'develop' ]; then
+	   return -1 
+   fi
+   echo $branch
+}
 function gitkey { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]' }
 function subbranch { command git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]' }
 function wpe { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD | python -c 'import sys; print sys.stdin.readline().split("/")[1]'` && git ammend }
 function wpee { command git commit -a "$@" -m `git rev-parse --abbrev-ref HEAD` && git ammend }
 function fixtest { command git commit -a "$@" -m "`gitkey` fix tests" }
 function cleanup { command git commit -a "$@" -m "`gitkey` cleanup" }
-function gitbranch5 { command git branch --sort=authordate | tail -15 }
+function gitbranch5 { command git branch --sort=authordate | tail -25 }
 
 # doccker shortcut
 function dola { command docker ps -l -q }
@@ -291,18 +301,14 @@ bindkey '^[r' peco-select-history
 #export PATH="/opt/go116/bin:$PATH"
 export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
-export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH=$HOME/Devel/flutter/bin:$PATH
-
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-
 pecoo() { fzf | while read LINE; do $@ $LINE; done }
+
 # alias o='git ls-files | p open'
 alias ghqj='ghq list -p | pecoo cd'
-alias gitcoj='gitbranch5 | pecoo git checkout'
+alias coj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
 alias gsw='git switch -'
+alias resethard='git reset --hard'
 
 alias gr="go run internal/main.go"
 alias t="task"
@@ -310,10 +316,11 @@ alias tt="task || task precommit"
 alias precommit="task precommit"
 alias nr='npm run start'
 alias tidy="go mod tidy"
-alias cl="clear"
 function start() {
   if [ -e internal/main.go ]; then
     go run internal/main.go  
+  elif [ -e bin/rails ]; then
+    ./bin/rails server
   elif [ -e package.json ]; then
     npm run start 
   fi
@@ -327,8 +334,8 @@ if [ -e ~/.zsh/.zshrc_private ]; then
   source ~/.zsh/.zshrc_private
 fi
 
-if [ -e ~/home/linuxbrew ]; then
-   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -e ~/.zsh/.zshenv ]; then
+  source ~/.zsh/.zshevn
 fi
 
 # for rbenv
@@ -336,15 +343,13 @@ fi
 # rbenv global 2.1.0
 eval "$(rbenv init -)"
 
-# for nodebrew
-PATH=$HOME/.nodebrew/current/bin:$PATH
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="/Users/takuya.iwakami/sdkman"
 # [[ -s "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh" ]] && source "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh"
+#
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 eval "$(direnv hook zsh)"
 
