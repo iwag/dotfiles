@@ -40,6 +40,7 @@
 	excludesfile = ~/.gitignore
 	pager = less -r
 	editor = nvim
+	filemode = false
 [grep]
 	lineNumber = true
 

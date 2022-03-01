@@ -83,10 +83,6 @@ if [ -f '/home/iwg/.local/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/h
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 
-
 source ~/.zshrc_all
 source ~/.zshrc_private
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="/Users/takuya.iwakami/sdkman"
-#[[ -s "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh" ]] && source "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh"
-#export PATH="/usr/local/opt/go@1.16/bin:$PATH"
+
