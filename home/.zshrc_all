@@ -300,7 +300,8 @@ bindkey '^[r' peco-select-history
 # go get github.com/motemen/ghq
 # git config --global ghq.root ~/Devel/src
 #export PATH="/opt/go116/bin:$PATH"
-export GOROOT=`go env GOROOT`
+export GOROOT="/usr/local/Cellar/go/1.20.5/libexec"
+#export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
 pecoo() { fzf | while read LINE; do $@ $LINE; done }
 
@@ -312,6 +313,7 @@ alias gsw='git switch -'
 alias resethard='git reset --hard'
 
 alias gr="go run internal/main.go"
+alias vet="go vet ./..."
 alias t="task"
 alias tt="task || task precommit"
 alias precommit="task precommit"
@@ -335,8 +337,8 @@ if [ -e ~/.zsh/.zshrc_private ]; then
   source ~/.zsh/.zshrc_private
 fi
 
-if [ -e ~/.zsh/.zshenv ]; then
-  source ~/.zsh/.zshevn
+if [ -e ~/.zshenv ]; then
+  source ~/.zshenv
 fi
 
 # for rbenv
@@ -351,6 +353,7 @@ eval "$(rbenv init -)"
 # [[ -s "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh" ]] && source "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh"
 #
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 
 eval "$(direnv hook zsh)"
 

@@ -1,6 +1,6 @@
 [user]
-	name = iwakami
-	email = iwagame@gmail.com
+	name = Takuya Iwakami
+	email = 1522583+iwag@users.noreply.github.com
 [core]
 	excludesfile = /Users/iwag/.gitignore_global
 [difftool "sourcetree"]
@@ -32,10 +32,13 @@
 	difff = diff --stat
 	patience = diff --patience
 	resethard = reset --hard
+	rh = reset --hard
+	mix = reset --mix
+	fa = fetch -a
 [branch]
 	autosetuprebase = always
 [push]
-	default = current
+	default = simple
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -r
@@ -50,19 +53,17 @@
 #	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/iwag/Dev
-
-[url "git@github.com:"]
-	insteadOf = git://github.com/
-	insteadOf = https://github.com/
-	insteadOf = http://github.com/
-	pushinsteadof = git://github.com/
-	pushinsteadOf = https://github.com/
+	root = /Users/takuya.iwakami/Devel
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[url "https://"]
-	insteadOf = git://
+
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+
+[init]
+	defaultBranch = main
+

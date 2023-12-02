@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 #  Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -5,7 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="random"
+ZSH_THEME="dpoggi"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,7 +47,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx brew docker git-extras web-search dirhistory github sbt scala ruby tmux)
+plugins=(git macos brew docker git-extras web-search dirhistory github golang)
 # jira ruby tmux
 
 
@@ -85,4 +87,13 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 source ~/.zshrc_all
 source ~/.zshrc_private
+
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
 

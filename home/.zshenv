@@ -40,16 +40,6 @@ export FTP_PASSIVE_MODE="NO"
 # export LC_CTYPE="_JP.eucJP"   # jman など
 # export LANG="C"
 
-#### $PAGER     "less"  
-# less -M はページのステータス(何ページ目か)の表示
-if [ -x `where lv` ]; then
-    export PAGER="lv "
-elif [ -x `where less` ];  then
-    export PAGER="less -RM"
-else
-    export PAGER="more"
-fi
-
 #### $COLORTERM 
 export COLORTERM=0
 case "$TERM" in 
@@ -63,11 +53,11 @@ case "$TERM" in
 esac
 
 #### EDITOR
-export EDITOR='vi'
-if [ -x `where vim`  ]; then    
-    export EDITOR="vim"
-    alias vi="vim"              # "skkfep -viesc -e jvim3"
-fi
+#export EDITOR='vi'
+#if [ -x `where vim`  ]; then    
+#    export EDITOR="vim"
+#    alias vi="vim"              # "skkfep -viesc -e jvim3"
+#fi
  
 ####  path / PATH
 # システムから提供される PATH およびユーザが定義する複数の候補から、
@@ -111,7 +101,8 @@ export PATH=$HOME/Devel/flutter/bin:$PATH
 
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/opt/python@3.9/bin:$PATH"
+export PATH=$PATH:$HOME/.poetry/bin
 
 if [ -e ~/home/linuxbrew ]; then
    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -119,5 +110,8 @@ if [ -e ~/home/linuxbrew ]; then
 fi
 
 . "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin/:$PATH"
+export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$PATH:$HOME/.fig/bin/"
 
 
