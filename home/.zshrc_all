@@ -306,7 +306,9 @@ export GOPATH="${HOME}/Devel/go"
 pecoo() { fzf | while read LINE; do $@ $LINE; done }
 
 # alias o='git ls-files | p open'
-alias ghqj='ghq list -p | pecoo cd'
+# cargo install --git https://github.com/serinuntius/pacifica.git
+alias ghqj='PACIFICA_PATH=/Users/takuya.iwakami/Devel pacifica | pecoo cd'
+# ghq is too slow alias ghqj='ghq list -p | pecoo cd'
 alias coj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
 alias gsw='git switch -'
