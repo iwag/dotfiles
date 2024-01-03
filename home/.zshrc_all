@@ -1,6 +1,4 @@
 autoload -U zmv
-alias mmv='noglob zmv -W'  # 引数のクォートも面倒なので
-# % mmv *.c.org org/*.c
 
 zstyle ':completion:*' use-compctl false # compctl形式を使用しない
 
@@ -35,11 +33,10 @@ setopt hist_reduce_blanks # 余分な空白は詰めて登録(空白数違い登
 setopt share_history    # ヒストリの共有。(append系と異なり再読み込み不要、これを設定すれば append 系は不要)
 setopt hist_no_store            # historyコマンドは登録しない
 setopt hist_ignore_space # コマンド行先頭が空白の時登録しない(直後ならば呼べる)
-
+setopt hist_verify
 
 setopt list_packed              # 補完候補リストを詰めて表示
 setopt print_eight_bit          # 補完候補リストの日本語を適正表示
-#setopt menu_complete  # 1回目のTAB で補完候補を挿入。表示だけの方が好き
 setopt no_clobber               # 上書きリダイレクトの禁止
 setopt no_unset                 # 未定義変数の使用の禁止
 setopt no_hup                   # logout時にバックグラウンドジョブを kill しない
@@ -52,7 +49,7 @@ setopt no_checkjobs             # exit 時にバックグラウンドジョブ�
 #setopt ignore_eof              # C-dでlogoutしない(C-dを補完で使う人用)
 setopt pushd_to_home        # 引数なしpushdで$HOMEに戻る(直前dirへは cd - で)
 setopt pushd_ignore_dups        # ディレクトリスタックに重複する物は古い方を削除
-#setopt pushd_silent   # pushd, popd の度にディレクトリスタックの中身を表示しない
+setopt pushd_silent   # pushd, popd の度にディレクトリスタックの中身を表示しない
 setopt auto_cd # ディレクトリ名だけでcdする
 setopt interactive_comments     # コマンド入力中のコメントを認める
 #setopt rm_star_silent          # rm * で本当に良いか聞かずに実行
@@ -62,12 +59,9 @@ setopt interactive_comments     # コマンド入力中のコメントを認め�
 
 setopt auto_pushd # cd したら自動的にpushdする
 
-
 setopt hist_save_nodups # ヒストリファイルに保存するとき、すでに重複したコマンドがあったら古い方を削除する
-setopt hist_reduce_blanks # ヒストリに保存するときに余分なスペースを削除する
 
 setopt auto_menu # 補完候補が複数あるときに自動的に一覧表示する
-
 
 setopt print_eight_bit # 日本語ファイル名を表示可能にする
 
@@ -91,14 +85,6 @@ bindkey '^I'   complete-word   # complete on tab, leave expansion to _expand
 bindkey '^P' history-beginning-search-backward # 先頭マッチのヒストリサーチ
 bindkey '^N' history-beginning-search-forward # 先頭マッチのヒストリサーチ
 
-# run-help が呼ばれた時、zsh の内部コマンドの場合は該当する zsh のマニュアル表示
-[ -n "`alias run-help`" ] && unalias run-help
-autoload run-help
-
-#### completion
-#_cache_hosts=(`perl -ne  'if (/^([a-zA-Z0-9.-]+)/) { print "$1\n";}' ~/.ssh/known_hosts`)
-# ↑(_cache_hosts) ~/.ssh/known_hosts から自動的に取得する
-_cache_hosts=($HOST localhost)
 autoload -U compinit; compinit -u
 
 
