@@ -15,7 +15,7 @@ export PATH
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 
-zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+#zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 
 ## 補完時に大小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -74,12 +74,14 @@ colors
 
 limit   coredumpsize    0       # コアファイルを吐かないようにする
 
-stty    erase   '^H'
-stty    intr    '^C'
-stty    susp    '^Z'
+#stty    erase   '^H'
+#stty    intr    '^C'
+#stty    susp    '^Z'
 
 #### bindkey
-bindkey -e    # emacs 風キーバインド(環境変数 EDITOR も反映するが、こっちが優先)
+set +u # this for autocompletion-zsh
+bindkey -d
+bindkey -e
 bindkey '^I'   complete-word   # complete on tab, leave expansion to _expand
 
 bindkey '^P' history-beginning-search-backward # 先頭マッチのヒストリサーチ
@@ -87,10 +89,9 @@ bindkey '^N' history-beginning-search-forward # 先頭マッチのヒストリ�
 
 autoload -U compinit; compinit -u
 
-
 # for byobu tmux
 if [ $TERM = "screen" ]; then # || [ $SCREEN = 1 ]; then
-	stty erase "^?"
+#	stty erase "^?"
 fi
 
 ############################################################
@@ -293,19 +294,17 @@ pecoo() { fzf | while read LINE; do $@ $LINE; done }
 
 # alias o='git ls-files | p open'
 # cargo install --git https://github.com/serinuntius/pacifica.git
-alias ghqj='PACIFICA_PATH=/Users/takuya.iwakami/Devel pacifica | pecoo cd'
+alias ghqj='PACIFICA_PATH=/Users/takuya.iwakami/Devel ~/.cargo/bin/pacifica | pecoo cd'
 # ghq is too slow alias ghqj='ghq list -p | pecoo cd'
 alias coj='gitbranch5 | pecoo git checkout'
 alias sshj='ssh `ls -1 ${HOME}/ssh/* | pecoo cat`'
 alias gsw='git switch -'
 alias resethard='git reset --hard'
 
-alias gr="go run internal/main.go"
 alias vet="go vet ./..."
 alias t="task"
 alias tt="task || task precommit"
 alias precommit="task precommit"
-alias nr='npm run start'
 alias tidy="go mod tidy"
 function start() {
   if [ -e internal/main.go ]; then
@@ -321,17 +320,18 @@ if [ -e ~/.zsh/ghq.zsh ]; then
   source ~/.zsh/ghq.zsh
 fi
 
-if [ -e ~/.zsh/.zshrc_private ]; then
-  source ~/.zsh/.zshrc_private
+if [ -e ~/.config/zsh/.zshrc_private ]; then
+  source ~/.config/zsh/.zshrc_private
 fi
 
-if [ -e ~/.zshenv ]; then
-  source ~/.zshenv
+if [ -e ~/config/.zsh/.zshenv ]; then
+  source ~/.config/zsh/.zshenv
 fi
 
 # for rbenv
 # rbenv install 2.1.0
 # rbenv global 2.1.0
+
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -341,7 +341,6 @@ eval "$(rbenv init -)"
 # [[ -s "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh" ]] && source "/Users/takuya.iwakami/sdkman/bin/sdkman-init.sh"
 #
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 
 eval "$(direnv hook zsh)"
 
