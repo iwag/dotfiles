@@ -53,8 +53,6 @@ cask install sourcetree || true
 cask install selfcontroll || true
 # cask install google-chrome || true
 # cask install firefox || true
-cask install virtualbox || true
-cask install docker-machine || true
 # cask install vmware-fusion || true
 # cask install intellij-idea-community || true
 # cask install totalspaces || true
@@ -72,7 +70,6 @@ cask install slack || true
 # chrome-remote-desktop
 cask install osxfuse veracrypt || true
 cask install tunnelblick || true
-cask install openoffice || true
 cask install vlc || true
 cask install visual-studio-code
 # couldn't now, cask install vcp-ftdi-driver
@@ -81,6 +78,7 @@ brew cask install font-source-code-pro
 install migemogrep || true
 # install golangci-lint || true
 install ghq
+install starship
 
 # following commands are not brew 
 # curl -L http://install.ohmyz.sh | sh

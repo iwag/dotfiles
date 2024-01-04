@@ -21,6 +21,8 @@ EOS
 antigen theme robbyrussell
 antigen apply
 
+eval "$(starship init zsh)"
+
 export PATH="/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/X11/bin:/usr/X11R6/bin"
 
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
