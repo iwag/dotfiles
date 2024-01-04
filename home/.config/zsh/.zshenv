@@ -16,7 +16,6 @@ fi
 PATH=$HOME/.nodebrew/current/bin:$PATH
 PATH=$HOME/.cargo/bin:$PATH
 
-export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 #export PATH=$HOME/.nodebrew/current/bin:$PATH
 #export PATH=$HOME/Devel/flutter/bin:$PATH
 
