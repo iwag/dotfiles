@@ -53,7 +53,7 @@
 #	diff = diff-highlight | less
 
 [ghq]
-	root = /Users/takuya.iwakami/Devel
+	root = /home/iwag/Devel
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -63,6 +63,9 @@
 
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
 [init]
 	defaultBranch = main

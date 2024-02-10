@@ -19,7 +19,7 @@ config.window_background_opacity = 0.98
 -- キラキラ光るよぞらのほしよ🐱
 
 config.font = wezterm.font("Firge35Nerd Console")
-config.font_size = 14.0
+config.font_size = 12.0
 
 -- and finally, return the configuration to wezterm
 return config
