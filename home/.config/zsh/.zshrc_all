@@ -1,5 +1,6 @@
 autoload -U zmv
 
+
 zstyle ':completion:*' use-compctl false # compctl形式を使用しない
 
 autoload -U colors; colors      # ${fg[red]}形式のカラー書式を有効化
@@ -276,7 +277,6 @@ bindkey '^[r' peco-select-history
 # git config --global ghq.root ~/Devel/src
 #export PATH="/opt/go116/bin:$PATH"
 #export GOROOT="/usr/local/Cellar/go/1.20.5/libexec"
-#export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/Devel/go"
 pecoo() { fzf | while read LINE; do $@ $LINE; done }
 
@@ -333,3 +333,23 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 eval "$(direnv hook zsh)"
 
+# only for win wsl
+
+function open() {
+    if [ $# != 1 ]; then
+        explorer.exe .
+    else
+        if [ -e $1 ]; then
+            cmd.exe /c start $(wslpath -w $1) 2> /dev/null
+        else
+            echo "open: $1 : No such file or directory" 
+        fi
+    fi
+}
+
+alias code="/mnt/c/Users/iwaga/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
+
+if [ -e  /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh ]; then
+  source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
+  export GOROOT=`go env GOROOT`
+fi
