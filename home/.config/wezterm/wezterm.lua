@@ -16,10 +16,22 @@ end
 config.color_scheme = 'nord'
 config.window_background_opacity = 0.98
 
--- キラキラ光るよぞらのほしよ🐱
 
 config.font = wezterm.font("Firge35Nerd Console")
 config.font_size = 14.0
+
+require 'keybinds'
+
+-- keybinds
+-- デフォルトのkeybindを無効化
+config.disable_default_key_bindings = true
+-- `keybinds.lua`を読み込み
+local keybind = require 'keybinds'
+-- keybindの設定
+config.keys = keybind.keys
+config.key_tables = keybind.key_tables
+-- Leaderキーの設定
+config.leader = { key = "`", mods = "CMD", timeout_milliseconds = 2000 }
 
 -- and finally, return the configuration to wezterm
 return config

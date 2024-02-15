@@ -206,6 +206,8 @@ function gitbranch5 { command git branch --sort=authordate | tail -25 }
 alias dc="docker-compose"
 alias dcup="docker-compose up"
 alias dcdown="docker-compose down"
+function docker-desktop { open -a Docker; }
+function stop-docker { oascript -e "quit app Docker"; }
 
 function rm() {
   if [ -d ~/.trash ]; then

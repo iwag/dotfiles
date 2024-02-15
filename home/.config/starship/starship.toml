@@ -7,8 +7,6 @@ $git_status\
 [](fg:#394260)\
 $fill\
 [](fg:#212736)\
-$nodejs\
-$rust\
 $golang\
 [](fg:#1d2230 bg:#212736)\
 $time\
@@ -55,11 +53,14 @@ disabled = true
 [git_branch]
 symbol = ""
 style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+tag_disabled = false
+tag_max_candidates = 1
+format = '[[ $symbol $branch $tag ](fg:#769ff0 bg:#394260)]($style)'
 
 [git_status]
 style = "bg:#394260"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+
 
 [nodejs]
 symbol = ""
